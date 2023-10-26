@@ -6,7 +6,7 @@ if (!isset($_POST['username'], $_POST['password']) ) {
 	exit('Please fill both the username and password fields!');
 }
 
-if ($stmt = $connLoginMember->prepare('SELECT member_ID, password FROM member WHERE username = ?')) {
+if ($stmt = $connLoginMember->prepare('SELECT member_ID, password FROM users WHERE username = ?')) {
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
 	$stmt->store_result();
