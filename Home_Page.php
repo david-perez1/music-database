@@ -19,10 +19,7 @@
       <p class="home_paragraph">
         Welcome to Cougify!
       </p>
-      <!-- <p class="home_paragraph">
-        Join the growing Oleum community and discover the convenience of obtaining quotes and reviewing your order
-        history. From wellhead to market, Oleum has your back. Experience the future of oil management with Oleum today!
-      </p> -->
+      
     </div>
     </div>
 </body>
