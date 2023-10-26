@@ -36,7 +36,7 @@ function setNavbarOpen($value)
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="shortcut icon" type="image/x-icon" href="Oleum header.ico">
+<link rel="shortcut icon" type="image/x-icon" href="Cougify header.ico">
 <div>
 
   <nav class="bg-gray-100">
