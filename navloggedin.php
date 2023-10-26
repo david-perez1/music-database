@@ -36,7 +36,7 @@ function setNavbarOpen($value)
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="shortcut icon" type="image/x-icon" href="Cougify header.ico">
+<link rel="shortcut icon" type="image/x-icon" href="Music header.ico">
 <div>
 
   <nav class="bg-gray-100">
@@ -58,11 +58,8 @@ function setNavbarOpen($value)
 
           <!-- primary nav -->
           <div class="hidden md:flex items-center space-x-1">
-            <a href="clientprofile.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Profile</a>
-            <a href="fuelquoteform.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Quote Form</a>
-            <a href="fuelquotehistory.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Quote History</a>
-            <a href="clientprofile.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Search</a>
-            <a href="clientprofile.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Create Playlist</a>
+            <a href="search.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Search</a>
+            <a href="playlist.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Create Playlist</a>
 
 
 
@@ -90,9 +87,8 @@ function setNavbarOpen($value)
 
     <!-- mobile menu -->
     <div class="mobile-menu hidden md:hidden">
-      <a href="clientprofile.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Profile</a>
-      <a href="fuelquoteform.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Quote Form</a>
-      <a href="fuelquotehistory.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Quote History</a>
+      <a href="search.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Search</a>
+      <a href="playlist.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Create Playlist</a>
       <a href="Logout_Member.php" class="block bg-yellow-300 py-2 px-4 text-sm hover:bg-gray-200">Sign Out</a>
     </div>
   </nav>
