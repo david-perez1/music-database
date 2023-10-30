@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #b61c0e;
+        }
+
+        .search-bar {
+            flex: 1;
+        }
+
+        .home-button button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .home-button button:hover {
+            background-color: #e65c4e;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .library-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .library-title {
+            font-size: 3rem;
+            color: #b61c0e;
+            margin-bottom: 20px;
+        }
+
+        .create-playlist-button, .upload-song-button {
+            background-color: #b61c0e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .create-playlist-button:hover, .upload-song-button:hover {
+            background-color: #b61c0e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-strip">
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." style="padding: 8px; border-radius: 5px; border: none;">
+            <button type="submit" style="background-color: #e65c4e; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;">Search</button>
+        </div>
+        <div class="home-button">
+            <button>Home</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="library-section">
+            <h2 class="library-title">My Library</h2>
+            <button class="create-playlist-button" onclick="createPlaylist()">Make Playlist</button>
+            <button class="upload-song-button" onclick="openFileUploader()">Upload Song</button>
+        </div>
+        <div class="playlist-section" id="playlistSection">
+            <!-- Display the names of all playlists here -->
+        </div>
+    </div>
+
+    <!-- Add any other content or sections here -->
+
+    <script>
+        function createPlaylist() {
+            var playlistName = prompt("Give your playlist a name:", "");
+            if (playlistName != null && playlistName != "") {
+                window.location.href = "playlist.html?name=" + playlistName;
+            } else {
+                console.log("Playlist name not provided");
+            }
+        }
+
+        function openFileUploader() {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.mp3';
+            input.onchange = function (event) {
+                var file = event.target.files[0];
+                if (file.type === "audio/mpeg") {
+                    console.log("Uploading file:", file.name);
+                } else {
+                    alert("Please upload an MP3 file.");
+                }
+            };
+            input.click();
+        }
+    </script>
+</body>
+
+</html>

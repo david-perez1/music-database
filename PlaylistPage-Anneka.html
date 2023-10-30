@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="allWebApp.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Page</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+
+<body>
+    <div class="playlist-content">
+        <h2 id="playlist-name"></h2>
+        <button onclick="addSongs()">Add Songs</button>
+    </div>
+
+    <!-- Add any other content or sections here -->
+
+    <script>
+        // Get the playlist name from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const playlistName = urlParams.get('name');
+        document.getElementById("playlist-name").innerText = playlistName;
+
+        function addSongs() {
+            // Add functionality to handle adding songs to the playlist
+            // You can redirect the user to another page or perform other actions here
+            console.log("Add songs to playlist: " + playlistName);
+        }
+    </script>
+</body>
+
+</html>
