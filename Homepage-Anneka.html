@@ -104,7 +104,7 @@
         function createPlaylist() {
             var playlistName = prompt("Give your playlist a name:", "");
             if (playlistName != null && playlistName != "") {
-                window.location.href = "playlist.html?name=" + playlistName;
+                window.location.href = "create_playlist.php?name=" + playlistName;
             } else {
                 console.log("Playlist name not provided");
             }
