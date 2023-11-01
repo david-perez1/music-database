@@ -20,9 +20,9 @@ include('navloggedin.php');
     </style>
 </head>
 
-<body class = "background md:text-5xl">
+<body class = "background">
 
-    <div class="mx-auto max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+    <!-- <div class="mx-auto max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0"> -->
     
 
     <!-- <div class="top-strip">
@@ -67,7 +67,7 @@ include('navloggedin.php');
                 if (file.type === "video/mp4") {
                     console.log("Uploading file:", file.name);
                 } else {
-                    alert("Please upload an MP3 file.");
+                    alert("Please upload an MP4 file.");
                 }
             };
             input.click();
