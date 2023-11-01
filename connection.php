@@ -10,6 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 $connLoginMember = mysqli_connect($servername, $username, $password, $dbname);
 
 $connMember = mysqli_connect($servername, $username, $password, $dbname);
+$connLoginAdmin = mysqli_connect($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -23,5 +24,7 @@ if (!$connLoginMember) {
 if (!$connMember) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
+if (!$connLoginAdmin) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 ?>
