@@ -1,6 +1,6 @@
 <?php 
 include('navloggedin.php'); 
-include('connection.php');
+// include('connection.php');
 ?>
 
 <!DOCTYPE html>
