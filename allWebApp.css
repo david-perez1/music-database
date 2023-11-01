@@ -1103,8 +1103,8 @@ body {
 }
 
 .background {
-  background-color: hsl(218, 41%, 15%);
-  background-image: radial-gradient(650px circle at 0% 0%,
+  background-color: #b61c0e;
+  /* background-image: radial-gradient(650px circle at 0% 0%,
           hsl(218, 41%, 35%) 15%,
           hsl(218, 41%, 30%) 35%,
           hsl(218, 41%, 20%) 75%,
@@ -1115,7 +1115,7 @@ body {
           hsl(218, 41%, 30%) 35%,
           hsl(218, 41%, 20%) 75%,
           hsl(218, 41%, 19%) 80%,
-          transparent 100%);
+          transparent 100%); */
 }
 
 .hover\:bg-blue-700:hover {
@@ -1367,3 +1367,68 @@ body {
     line-height: 1;
   }
 }
+
+
+
+.top-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #b61c0e;
+}
+
+.search-bar {
+  flex: 1;
+}
+
+.home-button button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.home-button button:hover {
+  background-color: #e65c4e;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.library-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.library-title {
+  font-size: 3rem;
+  color: #b61c0e;
+  margin-bottom: 20px;
+}
+
+.create-playlist-button, .upload-song-button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.create-playlist-button:hover, .upload-song-button:hover {
+  background-color: #b61c0e;
+}
+
+
