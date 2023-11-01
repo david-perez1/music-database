@@ -58,7 +58,7 @@ function setNavbarOpen($value)
 
           <!-- primary nav -->
           <div class="hidden md:flex items-center space-x-1">
-            <a href="search.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Search</a>
+            <a href="search-page.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Search</a>
             <a href="anneka-home.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Create Playlist</a>
 
 
@@ -87,8 +87,8 @@ function setNavbarOpen($value)
 
     <!-- mobile menu -->
     <div class="mobile-menu hidden md:hidden">
-      <a href="search.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Search</a>
-      <a href="playlist.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Create Playlist</a>
+      <a href="search-page.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Search</a>
+      <a href="create_playlist.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Create Playlist</a>
       <a href="Logout_Member.php" class="block bg-yellow-300 py-2 px-4 text-sm hover:bg-gray-200">Sign Out</a>
     </div>
   </nav>
