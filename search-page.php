@@ -23,10 +23,7 @@ include('navloggedin.php')
         </div>
     <div id="results">
         <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "Decon_0213";
-        $dbname = "music";
+       
 
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
