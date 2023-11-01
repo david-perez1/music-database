@@ -19,25 +19,22 @@
 <!-- Section: Design Block -->
 <section class="background-radial-gradient md:overflow-hidden">
   <style>
+    
     .background-radial-gradient {
-      background-color: hsl(218, 41%, 15%);
-      background-image: radial-gradient(650px circle at 0% 0%,
-          hsl(218, 41%, 35%) 15%,
-          hsl(218, 41%, 30%) 35%,
-          hsl(218, 41%, 20%) 75%,
-          hsl(218, 41%, 19%) 80%,
-          transparent 100%),
-        radial-gradient(1250px circle at 100% 100%,
-          hsl(218, 41%, 45%) 15%,
-          hsl(218, 41%, 30%) 35%,
-          hsl(218, 41%, 20%) 75%,
-          hsl(218, 41%, 19%) 80%,
-          transparent 100%);
+      background-color: rgb(141, 0, 0);
+      background-blend-mode: lighten;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-image: url('cougarloginpage.jpeg');
+      background-position: center 20%; 
+      background-size: 1000px 1000px; /* Ensures the image covers the entire viewport */ 
+      background-repeat: no-repeat; 
     }
 
     @media (min-width: 768px) {
 
-    #radius-shape-1 {
+    /* #radius-shape-1 {
       height: 220px;
       width: 220px;
       top: -60px;
@@ -54,7 +51,7 @@
       height: 300px;
       background: radial-gradient(#44006b, #ad1fff);
       overflow: hidden;
-    }
+    } */
   }
   </style>
   <!-- Navbar -->
@@ -98,6 +95,11 @@
               <div class="flex justify-center pt-2">
                 <div class="text-right text-black hover:underline hover:text-black">
                   <a href="Create_Account_Member.html">Create an account</a>
+                </div>
+              </div>
+              <div class="flex justify-center pt-2">
+                <div class="text-right text-black hover:underline hover:text-black">
+                  <a href="Login_admin.php">Admin Portal</a>
                 </div>
               </div>
             </form>
