@@ -1,30 +1,27 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
+$servername = "music.mysql.database.azure.com";
+$username = "david";
 $password = "Decon_0213";
 $dbname = "music";
+$port = 3306;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$con = mysqli_init();
+mysqli_ssl_set($con, NULL, NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_real_connect($con, $servername, $username, $password, $dbname, $port, MYSQLI_CLIENT_SSL);
 
-$connLoginMember = mysqli_connect($servername, $username, $password, $dbname);
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-$connMember = mysqli_connect($servername, $username, $password, $dbname);
-$connLoginAdmin = mysqli_connect($servername, $username, $password, $dbname);
+$conn = $con;
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (!$connLoginMember) {
-    echo ":(";
-    die("Connection failed: " . mysqli_connect_error());
-}
+$connLoginMember = $conn;
+$connMember = $conn;
+$connLoginAdmin = $conn;
 
-if (!$connMember) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-if (!$connLoginAdmin) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 ?>
