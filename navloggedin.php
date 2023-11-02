@@ -5,7 +5,7 @@ include('connection.php');
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {
-  header('Location: Login_Member.php');
+  header('Location: index.php');
   exit;
 }
 
