@@ -40,7 +40,7 @@ if ($stmt = $connMember->prepare('INSERT INTO users (username, password, email) 
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $stmt->bind_param('sss', $_POST['username'], $password, $email);
     $stmt->execute();
-    header('Location: Login_Member.php?accountCreation=success');
+    header('Location: index.php?accountCreation=success');
 } else {
     exit('Could not prepare statement!');
 }
