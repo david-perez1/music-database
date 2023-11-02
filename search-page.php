@@ -32,9 +32,17 @@ include('navloggedin.php');
                 $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
                 if (count($results) > 0) {
+                    echo '<table>';
+                    echo '<tr><th>Song ID</th><th>Title</th><th>Artist</th><th>Genre</th></tr>';
                     foreach ($results as $row) {
-                        echo "<p>Song ID: " . htmlspecialchars($row['SongID']) . " - Title: " . htmlspecialchars($row['SongTitle']) . " - Artist: " . htmlspecialchars($row['artistName']) . " - Genre: " . htmlspecialchars($row['Genre']) . "</p>";
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['SongID']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['SongTitle']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['artistName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Genre']) . "</td>";
+                        echo "</tr>";
                     }
+                    echo '</table>';
                 } else {
                     echo "<p>No results found</p>";
                 }

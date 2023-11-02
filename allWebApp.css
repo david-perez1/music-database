@@ -1431,4 +1431,21 @@ body {
   background-color: #b61c0e;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
 
