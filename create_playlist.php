@@ -57,6 +57,18 @@ include('navloggedin.php');
       <div class="playlist-container">
         <?php 
         if (isset($_SESSION['loggedin'])) {
+
+          $playlistName = "My Playlist";
+          if (isset($_GET['name'])) {
+            $playlistName = $_GET['name'];
+            echo htmlspecialchars($playlistName);
+          }
+          $userID = $_SESSION['id'];
+          $todayDate = date("Y-m-d");
+  
+          $sql = "INSERT INTO playlist (`Playlist Title`, UserID, CreatedDate) VALUES ('$playlistName', '$userID', '$todayDate')";
+          $conn->query($sql);
+
           // Hard coded playlists for now 
           $samplePlaylists = array(
             array("name" => "Road Trip Mix", "image" => "pawprint.jpeg"),
@@ -71,6 +83,7 @@ include('navloggedin.php');
             echo '<img class="playlist-image" src="' . $playlist["image"] . '" alt="' . $playlist["name"] . '">';
             echo '</div>';
           }
+          
         }
         ?>
       </div>

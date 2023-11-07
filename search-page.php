@@ -22,11 +22,20 @@ include('navloggedin.php');
     </div>
     <div id="results">
         <?php
+        
+        function addSongToPlaylist($SongID, $PlaylistID){
+            die();
+            $sql = "INSERT INTO playlistsongs VALUES ($PlaylistID, $SongID)";
+        }
+
         if (isset($_GET['query'])) {
             $query = mysqli_real_escape_string($con, $_GET['query']);
             $sql = "SELECT * FROM song WHERE SongTitle LIKE '%$query%' OR Genre LIKE '%$query%' OR artistName LIKE '%$query%'";
-            
+            $uid = $_SESSION['id'];
             $result = mysqli_query($con, $sql);
+
+            $sql = "SELECT * FROM playlist WHERE playlist.UserID = $uid";
+            $playlists = mysqli_query($con, $sql);
 
             if ($result) {
                 $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -40,8 +49,27 @@ include('navloggedin.php');
                         echo "<td>" . htmlspecialchars($row['SongTitle']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['artistName']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Genre']) . "</td>";
+                        echo "<td class='no-border-cell'>";
+                        
+                        echo "<div class='dropdown'>";
+
+                        echo "<a href='#' class='add-to-playlist-link'><img src='images/green-plus-button.png' height='25px' width='25px' alt='Add to Playlist'></img></a>";
+
+                        echo "<div class='dropdown-content'>";
+
+                        foreach ($playlists as $playlist){
+                            $playlistID = $playlist['PlaylistID'];
+                            $songID = $row['SongID'];
+
+                            echo "<a href='add_to_playlist.php?songID=" . $row['SongID'] . "&playlistID=" . $playlistID . "&query=" . urlencode($_GET['query']) . "'>" . $playlist['Playlist Title'] . "</a>";
+                        }
+                        
+                        echo "</div></div>";
+                        
+                        echo "</td>";
                         echo "</tr>";
                     }
+                    
                     echo '</table>';
                 } else {
                     echo "<p>No results found</p>";
@@ -49,6 +77,10 @@ include('navloggedin.php');
             } else {
                 echo "<p>Error executing query: " . htmlspecialchars(mysqli_error($con)) . "</p>";
             }
+        }
+        if (isset($_GET['error'])) {
+            $errorMessage = htmlspecialchars($_GET['error']);
+            echo "<script>alert('$errorMessage');</script>";
         }
         ?>
     </div>
