@@ -78,9 +78,9 @@ include('navloggedin.php');
                 echo "<p>Error executing query: " . htmlspecialchars(mysqli_error($con)) . "</p>";
             }
         }
-        if (isset($_GET['error'])) {
-            $errorMessage = htmlspecialchars($_GET['error']);
-            echo "<script>alert('$errorMessage');</script>";
+        if (isset($_GET['popupMessage'])) {
+            $popupMessage = htmlspecialchars($_GET['popupMessage']);
+            echo "<script>alert('$popupMessage');</script>";
         }
         ?>
     </div>

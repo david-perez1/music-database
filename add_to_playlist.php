@@ -11,14 +11,15 @@ include('connection.php');
 
         if (mysqli_num_rows($result) > 0) {
             $errorMessage = "Song is already in the playlist.";
-            header('Location: search-page.php?query=' . urlencode($_GET['query']) . '&error=' . urlencode($errorMessage));
+            header('Location: search-page.php?query=' . urlencode($_GET['query']) . '&popupMessage=' . urlencode($errorMessage));
             exit();
         }
         else {
 
             $sql = "INSERT INTO playlistsongs (PlaylistID, SongID) VALUES ($playlistID, $songID)";
             if (mysqli_query($con, $sql)) {
-                header('Location: search-page.php?query=' . urlencode($_GET['query']));
+                $message = "Successfully added to playlist.";
+                header('Location: search-page.php?query=' . urlencode($_GET['query']) . '&popupMessage=' . urlencode($message));
                 exit();
 
             } else {
