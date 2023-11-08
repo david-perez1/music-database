@@ -19,7 +19,6 @@
       <p class="home_paragraph">
         Welcome to Cougify!
       </p>
-      
     </div>
     </div>
 </body>
