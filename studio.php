@@ -19,7 +19,7 @@ if(!isset($_SESSION['id'])) {
 $artistID = $_SESSION['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
-    $songTitle = $_FILES["songToUpload"]["name"];
+    $songTitle = $_POST['SongTitle'] ?? 'Unknown Title';  // Set a default value in case the input is empty
     $temp_song_file = $_FILES["songToUpload"]["tmp_name"];
 
     $genre = $_POST["Genre"] ?? null;
@@ -27,6 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
     $artistName = $_POST["artistName"] ?? null;
 
     $upload_directory = 'uploads/';
+    $upload_dir = 'uploads/';
+    if (!is_dir($upload_dir)) {
+        if (!mkdir($upload_dir, 0755, true)) {
+            die("Failed to create upload directory: " . $upload_dir);
+        }
+    }
+
+    if (!is_writable($upload_dir)) {
+        die("Upload directory is not writable: " . $upload_dir);
+    }
     $fileData = $upload_directory . basename($songTitle);
 
     if (move_uploaded_file($temp_song_file, $fileData)) {
@@ -59,13 +69,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
 </head>
 <body class="background">
 
-<!-- The HTML form for song upload -->
 <form action="" method="post" enctype="multipart/form-data">
     Select song to upload:
-    <input type="file" name="songToUpload" id="songToUpload" accept=".mp3">
-    Genre: <input type="text" name="Genre">
-    Release Date: <input type="date" name="ReleaseDate">
-    Artist Name: <input type="text" name="artistName">
+    <input type="file" name="songToUpload" id="songToUpload" accept=".mp3"><br>
+    Song Title: <input type="text" name="SongTitle" required><br>
+    Genre: <input type="text" name="Genre"><br>
+    Release Date: <input type="date" name="ReleaseDate"><br>
+    Artist Name: <input type="text" name="artistName"><br>
     
     <input type="submit" value="Upload Song" name="submit">
 </form>
