@@ -60,6 +60,7 @@ function setNavbarOpen($value)
           <div class="hidden md:flex items-center space-x-1">
             <a href="search-page.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Search</a>
             <a href="anneka-home.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Create Playlist</a>
+            <a href="studio.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Studio</a>
 
 
 
