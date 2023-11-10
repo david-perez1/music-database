@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
         body {
             font-family: 'Arial', sans-serif;
             background-color: #ff0000; 
-            background-image: url(images\musical-notes.png); 
+            background-image: url(https://www.pngall.com/wp-content/uploads/2016/09/Musical-Notes-Free-PNG-Image.png); 
             background-repeat: repeat;
             margin: 0;
             padding: 0;
