@@ -65,20 +65,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Your head content -->
+    <!-- Your head content, like title, link to CSS, etc. -->
 </head>
 <body class="background">
 
-<form action="" method="post" enctype="multipart/form-data">
-    Select song to upload:
-    <input type="file" name="songToUpload" id="songToUpload" accept=".mp3"><br>
-    Song Title: <input type="text" name="SongTitle" required><br>
-    Genre: <input type="text" name="Genre"><br>
-    Release Date: <input type="date" name="ReleaseDate"><br>
-    Artist Name: <input type="text" name="artistName"><br>
-    
-    <input type="submit" value="Upload Song" name="submit">
-</form>
+<!-- Center the form on the page -->
+<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+    <form action="" method="post" enctype="multipart/form-data">
+        <table align="center">
+            <tr>
+                <td>Select song to upload:</td>
+                <td><input type="file" name="songToUpload" id="songToUpload" accept=".mp3"></td>
+            </tr>
+            <tr>
+                <td>Song Title:</td>
+                <td><input type="text" name="SongTitle" required></td>
+            </tr>
+            <tr>
+                <td>Genre:</td>
+                <td><input type="text" name="Genre"></td>
+            </tr>
+            <tr>
+                <td>Release Date:</td>
+                <td><input type="date" name="ReleaseDate"></td>
+            </tr>
+            <tr>
+                <td>Artist Name:</td>
+                <td><input type="text" name="artistName"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><input type="submit" value="Upload Song" name="submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 <!-- Rest of your body content -->
 
