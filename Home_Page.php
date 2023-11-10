@@ -17,7 +17,7 @@
         echo "<p class='text-center text-white text-4xl font-bold tracking-tight sm:text-5xl md:mt-20'>Welcome back,</p><p class='text-center text-blue-500 text-4xl font-bold tracking-tight sm:text-5xl'>" . $_SESSION['name'] . "</p>";
       } ?>
       <p class="home_paragraph">
-        Welcome to Cougify!
+        Welcome to Cougify! UH's go-to Music Library :)
       </p>
     </div>
     </div>
