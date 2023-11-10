@@ -12,12 +12,12 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Set body height to 100% of the viewport height */
+    height: 100vh; 
 }
 
 .container {
     display: flex;
-    height: 100%; /* Set container height to 100% of the viewport height */
+    height: 100%; 
 }
 
 .sidebar {
@@ -63,13 +63,35 @@
 .content h2 {
     margin-bottom: 20px;
 }
+.add-button {
+            position: absolute;
+            top: 80px;
+            left: 125px; 
+            background-color: darkred;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .add-button:hover {
+            background-color: #45a049;
+        }
 
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>Your Library</h2>
+        <h2 style="display: flex; align-items: center;">Your Library
+                <button class="add-button" onclick="handleAddPlaylist()">+</button>
+            </h2>
             <ul id="playlist">
             <?php
                 include('connection.php');
@@ -82,6 +104,7 @@
                 }
             ?>
             </ul>
+            <button class="add-button" onclick="handleAddPlaylist()">+</button>
         </div>
         <div class="content">
             <h2>Playlist Content</h2>
@@ -90,5 +113,15 @@
             </div>
         </div>
     </div>
+    <script>
+        function handleAddPlaylist() {
+            var playlistName = prompt("Give your playlist a name:", "");
+            if (playlistName != null && playlistName != "") {
+                window.location.href = "create_playlist.php?name=" + playlistName;
+            } else {
+                console.log("Playlist name not provided");
+            } 
+        }
+    </script>
 </body>
 </html>
