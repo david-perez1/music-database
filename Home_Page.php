@@ -7,20 +7,23 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cougify</title>
+  <title>Cougify - Your Music Library</title>
 </head>
 
 <body class="background">
   <div class="mx-auto max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
     <div class="items-center justify-center md:pl-64 md:pr-64 mx-auto md:mt-10">
-      <?php if (isset($_SESSION['loggedin'])) {
+      <?php
+      if (isset($_SESSION['loggedin'])) {
         echo "<p class='text-center text-white text-4xl font-bold tracking-tight sm:text-5xl md:mt-20'>Welcome back,</p><p class='text-center text-blue-500 text-4xl font-bold tracking-tight sm:text-5xl'>" . $_SESSION['name'] . "</p>";
-      } ?>
+      }
+      ?>
       <p class="home_paragraph">
-        Welcome to Cougify!
+        Welcome to Cougify - Your UH Music Library!
       </p>
     </div>
-    </div>
+  </div>
 </body>
 
 </html>
+

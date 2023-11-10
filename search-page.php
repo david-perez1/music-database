@@ -1,5 +1,6 @@
 <?php
 include('connection.php');
+include('navloggedin.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,17 +9,17 @@ include('connection.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Search</title>
+    <title>Cougify</title>
 </head>
-<body class="background">
-    <h1 class="library-title">Music Search</h1>
+<body class="background style="background-color: #232323;"">
+<h1 class="search-title">Cougify</h1>
     <div class="main-content">
         <form method="get" action="">
-            <label for="query">Search:</label>
             <input type="text" id="query" name="query" required>
             <button class="create-playlist-button">Search</button>
         </form>
     </div>
+    
     <div id="results">
         <?php
         
@@ -82,6 +83,6 @@ include('connection.php');
             echo "<script>alert('$popupMessage');</script>";
         }
         ?>
-    </div>
+    </div>    
 </body>
 </html>

@@ -19,7 +19,7 @@
 
 .container {
     display: flex;
-    height: 100%; /* Set container height to 100% of the viewport height */
+    height: 100%; 
 }
 
 .sidebar {
@@ -103,7 +103,9 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>Your Library</h2>
+        <h2 style="display: flex; align-items: center;">Your Library
+                <button class="add-button" onclick="handleAddPlaylist()">+</button>
+            </h2>
             <ul id="playlist">
             <?php
                 include('connection.php');
@@ -117,6 +119,7 @@
                 }
                 ?>
             </ul>
+            <button class="add-button" onclick="handleAddPlaylist()">+</button>
         </div>
         <div class="content">
             
