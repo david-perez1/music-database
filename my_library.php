@@ -13,6 +13,8 @@
     margin: 0;
     padding: 0;
     height: 100vh; /* Set body height to 100% of the viewport height */
+    background-color: #171717;
+    color: white;
 }
 
 .container {
@@ -22,7 +24,7 @@
 
 .sidebar {
     width: 200px;
-    background-color: #333;
+    background-color: #080808;
     color: #fff;
     padding: 20px;
     box-sizing: border-box;
@@ -37,16 +39,16 @@
 .sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 0; /* Remove default margin on ul */
+    margin: 0;
 }
 
 .sidebar li {
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Add a smooth transition effect */
-    padding: 10px 0; /* Adjust padding for better spacing */
-    line-height: 1.5; /* Adjust line height for better spacing */
-    height: auto; /* Allow the height to adjust based on content */
-    margin-bottom: 0; /* Remove the margin-bottom */
+    transition: background-color 0.3s ease;
+    padding: 10px 0;
+    line-height: 1.5;
+    height: auto;
+    margin-bottom: 0;
 }
 
 /* Hover effect */
@@ -63,6 +65,38 @@
 .content h2 {
     margin-bottom: 20px;
 }
+.song-list li {
+    cursor: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.song-list li:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+.song-list li:hover {
+    background-color: #999999;
+}
+
+.song-title {
+    flex-grow: 1; /* Take up remaining space */
+}
+
+.song-duration {
+    margin-left: 10px;
+    color: #888;
+}
+
+.song-artist {
+    text-align: center; /* Center the text */
+    flex-grow: 6; /* Take up remaining space */
+}
+
 
     </style>
 </head>
@@ -78,17 +112,37 @@
                 $playlists = mysqli_query($con, $sql);
 
                 foreach ($playlists as $playlistData) {
-                    echo "<li>" . $playlistData['Playlist Title'] . "</li>";
+                    // Wrap the entire <li> element in an anchor tag
+                    echo "<a href='#' onclick='showPlaylist(\"" .$playlistData["PlaylistID"] . "\")'><li>" . $playlistData['Playlist Title'] . "</li></a>";
                 }
-            ?>
+                ?>
             </ul>
         </div>
         <div class="content">
-            <h2>Playlist Content</h2>
+            
             <div id="playlist-content">
-                <!-- Playlist content will be displayed here -->
+                
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function showPlaylist(playlistID) {
+            $.ajax({
+                type: 'POST',
+                url: 'getPlaylist.php',
+                data: { playlistID: playlistID },
+                success: function(response) {
+                    $('#playlist-content').html(response);
+                }
+            });
+        }
+        function playSong(songTitle) {
+            // Implement the logic to play the selected song
+            alert('Playing: ' + songTitle);
+        }
+    </script>
+
 </body>
 </html>

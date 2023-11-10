@@ -8,10 +8,11 @@
         private $date;
 
 		public function __construct($con, $pid) {
-			$query = mysqli_query($con, "SELECT * FROM playlist WHERE PlaylistID = '$pid'");
+			$this->con = $con;
+
+			$query = mysqli_query($con, "SELECT * FROM playlist WHERE playlist.PlaylistID = $pid");
 			$data = mysqli_fetch_array($query);
 
-			$this->con = $con;
 			$this->pid = $data['PlaylistID'];
 			$this->name = $data['Playlist Title'];
 			$this->uid = $data['UserID'];
@@ -49,6 +50,10 @@
 			}
 
 			return $array;
+		}
+
+		public function isEmpty() {
+			return count($this->getSongIds()) == 0;
 		}
 	}
 ?>
