@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class="flex justify-center pt-2">
-                <div class="text-right text-black hover:underline hover:text-black">
+                <div class="text-right text-black hover:underline hover:text-white">
                   <a href="Login_admin.php">Admin Portal</a>
                 </div>
               </div>
