@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
         body {
             font-family: 'Arial', sans-serif;
             background-color: #ff0000; 
-            background-image: url(musical-notes.png); 
+            background-image: url(images\musical-notes.png); 
             background-repeat: repeat;
             margin: 0;
             padding: 0;
