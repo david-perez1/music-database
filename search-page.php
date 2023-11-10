@@ -11,7 +11,7 @@ include('navloggedin.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cougify</title>
 </head>
-<body class="background" style="background-color: #232323;">
+<body class="background">
 <h1 class="search-title">Cougify</h1>
     <div class="main-content">
         <form method="get" action="">
