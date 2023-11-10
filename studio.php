@@ -48,9 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
             $stmt->bind_param("sssssi", $songTitle, $releaseDate, $artistName, $genre, $fileData, $artistID);
 
             if ($stmt->execute()) {
-                echo "Song uploaded and stored in the database successfully.";
+                echo '<div style="text-align: center; margin-top: 20px; padding: 10px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; width: 50%; margin-left: auto; margin-right: auto;">
+            Song uploaded and stored in the database successfully.
+          </div>';
             } else {
-                echo "Error storing the song in the database: " . $stmt->error;
+                echo '<div style="text-align: center; margin-top: 20px; padding: 10px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; width: 50%; margin-left: auto; margin-right: auto;">
+            Error storing the song in the database: ' . htmlspecialchars($stmt->error) . '
+          </div>';
             }
             $stmt->close();
         } else {
