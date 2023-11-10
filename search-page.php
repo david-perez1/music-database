@@ -12,8 +12,7 @@ include('navloggedin.php');
     <title>Cougify</title>
 </head>
 <body class="background" style="background-color: #232323;">
-<h1 class="library-title" style="color: #ffffff; align-items: center; height: 6vh;
-            margin:80; padding: 60px; text-align:center; font-weight: bold; font-size: 80px;">Cougify</h1>
+<h1 class="search-title">Cougify</h1>
     <div class="main-content">
         <form method="get" action="">
             <input type="text" id="query" name="query" required>
