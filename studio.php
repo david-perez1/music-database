@@ -9,15 +9,40 @@ include('navloggedin.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Check if the user is logged in and the member_ID is set in the session
-if (!isset($_SESSION['id'])) {
-    // Redirect to the login page or display an error message if member_ID is not set
+// Check if user is logged in and the UserID is set in the session
+if(!isset($_SESSION['id'])) {
+    // Redirect to login page or display an error message if UserID is not set
     die("User is not logged in. Please log in to upload a song.");
 }
 
-// Assign member_ID from the session to a variable
-$artistID = $_SESSION['id'];
+// Assign UserID from session to a variable
+$userID = $_SESSION['id'];
 
+// Fetch the ArtistID based on the UserID
+$artistIDQuery = "SELECT ArtistID FROM artist WHERE UserID = ?";
+if ($stmt = $conn->prepare($artistIDQuery)) {
+    $stmt->bind_param("i", $userID);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+            $artistID = $row['ArtistID'];  // Now you have the correct ArtistID
+        } else {
+            $error_message = "<div class='error-message'>Only Artist's are allowed to upload songs.</div>";
+            // Use echo to output the error message and exit to stop script execution
+            // echo $error_message;
+            // exit;
+        }
+    } else {
+        die("Error executing query to find artist ID: " . $conn->error);
+    }
+    $stmt->close();
+} else {
+    die("Error preparing the query to find artist ID: " . $conn->error);
+}
+
+// Proceed with file upload if ArtistID is found
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
     $songTitle = $_POST['SongTitle'] ?? 'Unknown Title';  // Set a default value in case the input is empty
     $temp_song_file = $_FILES["songToUpload"]["tmp_name"];
@@ -27,22 +52,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
     $artistName = $_POST["artistName"] ?? null;
 
     $upload_directory = 'uploads/';
-    $upload_dir = 'uploads/';
-    if (!is_dir($upload_dir)) {
-        if (!mkdir($upload_dir, 0755, true)) {
-            die("Failed to create upload directory: " . $upload_dir);
+    if (!is_dir($upload_directory)) {
+        if (!mkdir($upload_directory, 0755, true)) {
+            die("Failed to create upload directory: " . $upload_directory);
         }
     }
 
-    if (!is_writable($upload_dir)) {
-        die("Upload directory is not writable: " . $upload_dir);
+    if (!is_writable($upload_directory)) {
+        die("Upload directory is not writable: " . $upload_directory);
     }
-    $fileData = $upload_directory . basename($songTitle);
+
+    $fileData = $upload_directory . basename($_FILES["songToUpload"]["name"]);
 
     if (move_uploaded_file($temp_song_file, $fileData)) {
         // Prepare an insert statement with ArtistID
         $insert_query = "INSERT INTO song (SongTitle, ReleaseDate, ArtistName, Genre, FileData, ArtistID) VALUES (?, ?, ?, ?, ?, ?)";
-
+        
         if ($stmt = $conn->prepare($insert_query)) {
             // Bind the ArtistID along with other parameters
             $stmt->bind_param("sssssi", $songTitle, $releaseDate, $artistName, $genre, $fileData, $artistID);
@@ -67,92 +92,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Song - Your Music Library</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ff0000; 
-            background-image: url(https://www.pngall.com/wp-content/uploads/2016/09/Musical-Notes-Free-PNG-Image.png); 
-            background-repeat: repeat;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 8px;
-        }
-
-        input {
-            margin-bottom: 16px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        input[type="file"] {
-            margin-bottom: 20px;
-        }
-
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-            border: none;
-            padding: 12px;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <!-- Your head content, like title, link to CSS, etc. -->
 </head>
-
-<body>
-
-    <div class="container">
-        <h1>Upload Song</h1>
+<body class="background">
+    <?php if (isset($error_message)): ?>
+            <div class='error-message'><?php echo $error_message;exit; ?></div>
+        
+    <?php endif; ?>
+<!-- Center the form on the page -->
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
         <form action="" method="post" enctype="multipart/form-data">
-            <label for="songToUpload">Select song to upload:</label>
-            <input type="file" name="songToUpload" id="songToUpload" accept=".mp3">
-            
-            <label for="SongTitle">Song Title:</label>
-            <input type="text" name="SongTitle" required>
-            
-            <label for="Genre">Genre:</label>
-            <input type="text" name="Genre">
-            
-            <label for="ReleaseDate">Release Date:</label>
-            <input type="date" name="ReleaseDate">
-            
-            <label for="artistName">Artist Name:</label>
-            <input type="text" name="artistName">
-            
-            <input type="submit" value="Upload Song" name="submit">
+            <table align="center">
+                <tr>
+                    <td>Select song to upload:</td>
+                    <td><input type="file" name="songToUpload" id="songToUpload" accept=".mp3"></td>
+                </tr>
+                <tr>
+                    <td>Song Title:</td>
+                    <td><input type="text" name="SongTitle" required></td>
+                </tr>
+                <tr>
+                    <td>Genre:</td>
+                    <td><input type="text" name="Genre"></td>
+                </tr>
+                <tr>
+                    <td>Release Date:</td>
+                    <td><input type="date" name="ReleaseDate"></td>
+                </tr>
+                <tr>
+                    <td>Artist Name:</td>
+                    <td><input type="text" name="artistName"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><input type="submit" value="Upload Song" name="submit"></td>
+                </tr>
+            </table>
         </form>
     </div>
 
-</body>
+<!-- Rest of your body content -->
 
+</body>
 </html>
