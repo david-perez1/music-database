@@ -1,5 +1,6 @@
 <?php
 include('navloggedin.php');
+include('playbar.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,7 @@ include('navloggedin.php');
         .container {
             display: flex;
             height: 100%;
+            padding-bottom: 60px;
         }
 
         .sidebar {
@@ -185,21 +187,6 @@ include('navloggedin.php');
                 console.log("Playlist name not provided");
             }
         }
-
-        function playSong(songID) {
-            // Create a new audio element
-            var audio = new Audio();
-
-            // Define the source of the audio element to be the getSong.php script with the song ID
-            audio.src = 'getSong.php?id=' + songID;
-
-            // Play the audio
-            audio.play();
-
-            // Optional: Display a message or update the UI
-            alert('Playing: ' + songID);
-        }
-
 
     </script>
 

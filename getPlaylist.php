@@ -23,7 +23,8 @@ if ($playlist->isEmpty()) {
         $song = new Song($con, $sid);
         $formattedDuration = formatDuration($song->getDuration());
 
-        echo '<a href="#" ondblclick="playSong(\'' . $song->getSongID() . '\')">';
+        echo '<script src="queue.js"></script>';
+        echo '<a href="#" ondblclick="playSongNow(\'' . $song->getSongID() . '\')">';
         echo '<li>';
         echo '<span class="song-title">' . $song->getTitle() . '</span>';
         echo '<span class="song-artist">' . $song->getArtistName() . '</span>';
