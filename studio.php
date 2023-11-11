@@ -6,11 +6,7 @@
 
 include('connection.php');
 include('navloggedin.php');
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('upload_max_filesize', '64M');
-ini_set('post_max_size', '64M');
-ini_set( 'max_execution_time', '300');
+
 // Check if user is logged in and the UserID is set in the session
 if(!isset($_SESSION['id'])) {
     // Redirect to login page or display an error message if UserID is not set
