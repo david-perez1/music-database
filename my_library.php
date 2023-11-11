@@ -186,9 +186,18 @@ include('navloggedin.php');
             }
         }
 
-        function playSong(songTitle) {
-            // TODO: Implement the logic to play the selected song
-            alert('Playing: ' + songTitle);
+        function playSong(songID) {
+            // Create a new audio element
+            var audio = new Audio();
+
+            // Define the source of the audio element to be the getSong.php script with the song ID
+            audio.src = 'getSong.php?id=' + songID;
+
+            // Play the audio
+            audio.play();
+
+            // Optional: Display a message or update the UI
+            alert('Playing: ' + songID);
         }
 
 
