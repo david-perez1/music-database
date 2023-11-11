@@ -36,24 +36,35 @@ if ($stmt = $connMember->prepare('SELECT member_ID FROM users WHERE username = ?
 }
 
 // Insert new user
-if ($stmt = $connMember->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)')) {
+if ($stmt = $connMember->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)')){
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $stmt->bind_param('sss', $_POST['username'], $password, $email);
-    $stmt->execute();
-    header('Location: index.php?accountCreation=success');
+    if ($stmt->execute()) {
+        // Retrieve the last insert ID
+        $user_id = $connMember->insert_id;
+
+        // Prepare to insert artist details into 'artist' table
+        if ($stmt = $conn->prepare('INSERT INTO artist (UserID, ArtistName, Biography, Country) VALUES (?, ?, ?, ?)')) {
+            $stmt->bind_param('isss', $user_id, $_POST['artistName'], $_POST['bio'], $_POST['country']);
+            if (!$stmt->execute()) {
+                // This will print any SQL error for artist insertion
+                echo "Artist Insert Error: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            // This will print an error if the statement couldn't be prepared
+            echo "Prepare failed for artist insertion: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        // Redirect only after all operations are complete
+        header('Location: index.php?registration=success');
+    } else {
+        exit('Could not prepare statement for user insertion!');
+    }
 } else {
-    exit('Could not prepare statement!');
-}
-// insert artist details into 'artist' table
-if ($stmt = $conn->prepare('INSERT INTO artist (user_id, name, bio, genre) VALUES (?, ?, ?, ?)')) {
-    $stmt->bind_param('isss', $user_id, $_POST['artistName'], $_POST['bio'], $_POST['genre']);
-    $stmt->execute();
-    $stmt->close();
-    header('Location: index.php?artistRegistration=success');
-} else {
-    exit('Could not prepare artist registration statement!');
+    exit('Could not prepare statement for user insertion!');
 }
 
 $stmt->close();
 $connMember->close();
-?>
+
