@@ -75,7 +75,7 @@ if (isset($_SESSION['id'])) {
         <p>This is a regular user profile.</p>
     <?php endif; ?>
 
-    <a href="logout.php">Logout</a>
+    <a href="DeleteAccount.php">Delete Account</a>
 <?php else: ?>
     <!-- Display login form -->
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
