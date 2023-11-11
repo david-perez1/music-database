@@ -1,7 +1,5 @@
 <?php
-// session_start(); // Start the session
-
-include('connection.php'); // Make sure this path is correct for your connection file
+include('connection.php');
 include('navloggedin.php');
 
 // Function to sanitize input
@@ -9,31 +7,30 @@ function clean_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-// Check for login submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $username = clean_input($_POST['username']);
-    $password = clean_input($_POST['password']); // Password should be hashed in a real application
+// Check for biography update submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_biography'])) {
+    $newBiography = clean_input($_POST['new_biography']);
 
     // Replace with a prepared statement in a real application
-    $login_query = "SELECT member_ID FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($con, $login_query);
+    $updateBiographyQuery = "UPDATE artist SET Biography = ? WHERE UserID = ?";
+    $stmt = mysqli_prepare($con, $updateBiographyQuery);
+    $userId = $_SESSION['id'];
+    mysqli_stmt_bind_param($stmt, 'si', $newBiography, $userId);
 
-    if (mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
-        $_SESSION['id'] = $user['member_ID']; // Set the user ID in the session
-        // Redirect to the profile page
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit();
+    if (mysqli_stmt_execute($stmt)) {
+        $biographyUpdateSuccess = "Biography updated successfully!";
     } else {
-        $login_error = "Invalid username or password.";
+        $biographyUpdateError = "Error updating biography: " . mysqli_error($con);
     }
+
+    mysqli_stmt_close($stmt);
 }
 
-// If user is logged in, fetch their profile information
+// Fetch artist biography
 if (isset($_SESSION['id'])) {
     $user_id = $_SESSION['id'];
 
-    // Determine if the user is an artist
+    // Check if the user is an artist
     $artist_query = "SELECT ArtistName, DateOfBirth, Country, Biography FROM artist WHERE UserID = ?";
     $stmt = mysqli_prepare($con, $artist_query);
     mysqli_stmt_bind_param($stmt, 'i', $user_id);
@@ -59,18 +56,34 @@ if (isset($_SESSION['id'])) {
     <title><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></title>
     <!-- Add your styles here -->
 </head>
-<body class = "background">
+<body class="background">
 
 <?php if (isset($_SESSION['id']) && $user_info): ?>
     <h1>Welcome, <?php echo htmlspecialchars($user_info['username']); ?></h1>
     <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
-    
+
     <?php if ($is_artist && $artist_info): ?>
         <h2>Artist Details</h2>
         <p>Artist Name: <?php echo htmlspecialchars($artist_info['ArtistName']); ?></p>
         <p>Date of Birth: <?php echo htmlspecialchars($artist_info['DateOfBirth']); ?></p>
         <p>Country: <?php echo htmlspecialchars($artist_info['Country']); ?></p>
         <p>Biography: <?php echo htmlspecialchars($artist_info['Biography']); ?></p>
+
+        <!-- Update Biography Form -->
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="new_biography">Update Biography:</label>
+            <textarea id="new_biography" name="new_biography" rows="4" cols="50"></textarea>
+            <input type="submit" name="update_biography" value="Update Biography">
+        </form>
+
+        <?php if (isset($biographyUpdateSuccess)): ?>
+            <p><?php echo $biographyUpdateSuccess; ?></p>
+        <?php endif; ?>
+
+        <?php if (isset($biographyUpdateError)): ?>
+            <p><?php echo $biographyUpdateError; ?></p>
+        <?php endif; ?>
+
     <?php else: ?>
         <p>This is a regular user profile.</p>
     <?php endif; ?>
@@ -78,7 +91,7 @@ if (isset($_SESSION['id'])) {
     <a href="DeleteAccount.php">Delete Account</a>
 <?php else: ?>
     <!-- Display login form -->
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
@@ -87,6 +100,7 @@ if (isset($_SESSION['id'])) {
 
         <input type="submit" name="login" value="Login">
     </form>
+
     <?php if (isset($login_error)): ?>
         <p><?php echo $login_error; ?></p>
     <?php endif; ?>
