@@ -1458,6 +1458,10 @@ th {
   background-image: url('images/green-plus-button.png');
 }
 
+.artist-info-button {
+  background-image: url('images/info_button.png');
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
