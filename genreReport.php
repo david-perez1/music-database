@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Viewed Report</title>
-    <style>
-        /* Add your CSS styles here */
-        table {
-            margin-top: 100px;
-            border-collapse: collapse; /* Optional: for better border appearance */
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px; /* Optional: for padding inside cells */
-        }
-    </style>
-</head>
-<body>
 
 <?php
 
@@ -53,5 +35,3 @@ $conn->close();
 
 ?>
 
-</body>
-</html>
