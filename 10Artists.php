@@ -1,4 +1,3 @@
-
 <?php
 // Include the database connection from connection.php 
 require 'connection.php'; // Using require ensures the file must be present
