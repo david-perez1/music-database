@@ -24,13 +24,15 @@ if ($playlist->isEmpty()) {
         $formattedDuration = formatDuration($song->getDuration());
 
         echo '<script src="queue.js"></script>';
-        echo '<a href="#" ondblclick="playSongNow(\'' . $song->getSongID() . '\')">';
+        echo '<a ondblclick="updateSession(' . $song->getSongID() . ')">';
         echo '<li>';
         echo '<span class="song-title">' . $song->getTitle() . '</span>';
         echo '<span class="song-artist">' . $song->getArtistName() . '</span>';
         echo '<span class="song-duration">' . $formattedDuration . '</span>';
+        
         echo '</li>';
         echo '</a>';
+        
     }
 
     // Add Delete Playlist button

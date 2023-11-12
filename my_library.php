@@ -137,7 +137,7 @@ include('playbar.php');
                 $playlists = mysqli_query($con, $sql);
 
                 foreach ($playlists as $playlistData) {
-                    echo "<a href='#' onclick='showPlaylist(\"" . $playlistData["PlaylistID"] . "\")'><li>" . $playlistData['Playlist Title'] . "</li></a>";
+                    echo "<a href='#playlistID=" . $playlistData["PlaylistID"] ."'onclick='showPlaylist(\"" . $playlistData["PlaylistID"] . "\")'><li>" . $playlistData['Playlist Title'] . "</li></a>";
                 }
                 ?>
             </ul>

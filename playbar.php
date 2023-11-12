@@ -38,13 +38,13 @@
 
   <div class="bottom-bar">
     <div class="center-buttons">
-      <button onclick="">
+      <button onclick="prev()">
         <img src="images/skip_backward.svg" alt="Back">
       </button>
-      <button onclick="playOrPauseSong()">
+      <button onclick="playOrPause()">
         <img src="images/play.svg" alt="Play">
       </button>
-      <button onclick="playNextSong()">
+      <button onclick="next()">
         <img src="images/skip_forward.svg" alt="Skip">
       </button>
     </div>

@@ -1,32 +1,57 @@
 var audio = new Audio();
 var songQueue = [];
+var index;
 
-function playNextSong(){
-    if (nextSongID !== undefined) {
-        var nextSongID = songQueue.shift();
-        audio.pause();
-        audio.src = "getSong.php?id=" + nextSongID;
-        audio.play();
+function loadPlaylist(playlistID, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+
+                if (Array.isArray(response)) {
+                    songQueue = response;
+                    console.log(songQueue);
+                    callback(); // Call the callback function after loading the playlist
+                } else {
+                    console.error('Invalid JSON response');
+                }
+            } else {
+                console.error('Error loading playlist');
+            }
+        }
+    };
+
+    xhr.open('GET', 'getSongsJSON.php?playlistID=' + playlistID, true);
+    xhr.send();
+}
+
+function next() {
+    if (index < songQueue.length - 1) {
+        index++;
+        playCurrentSong();
+    } else {
+        // Optional: You can handle what happens when trying to go beyond the last song.
+        console.log('End of playlist');
     }
 }
 
-function playPreviousSong(){
-    //todo
-}
-
-function playOrPauseSong(){ 
-    if (audio.paused){
-        audio.play();
-    }
-    else {
-        audio.pause();
+function prev() {
+    if (index > 0) {
+        index--;
+        playCurrentSong();
+    } else {
+        // Optional: You can handle what happens when trying to go before the first song.
+        console.log('Start of playlist');
     }
 }
 
-function playSongNow(songID) {
+function playCurrentSong() {
     audio.pause();
-
-    // Set the onplay event handler before setting the source and playing
+    audio.onended = function() {
+        
+        next();
+    };
     audio.onplay = function() {
         // Use fetch API to send a POST request to increment_play_count.php
         fetch('increment_play_count.php', {
@@ -34,7 +59,7 @@ function playSongNow(songID) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: 'songId=' + songID // Make sure the key matches the one expected by the PHP script
+            body: 'songId=' + songQueue[index] // Make sure the key matches the one expected by the PHP script
         })
         .then(response => response.text())
         .then(data => {
@@ -44,16 +69,23 @@ function playSongNow(songID) {
             console.error('Error incrementing play count:', error);
         });
     };
-
-    // Set the new source for the audio element
-    audio.src = "getSong.php?id=" + songID;
-    
-    // Attempt to play the new source
+    audio.src = 'getSong.php?id=' + songQueue[index];
     audio.play();
 }
 
+function playOrPauseSong() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
 
 
-function queueSong(songID){
-    songQueue.push(songID);
+function updateSession(songID) {
+    var playlistID = parseInt(window.location.href.match(/#playlistID=(\d+)/)[1], 10);
+    loadPlaylist(playlistID, function() {
+        index = songQueue.indexOf(songID);
+        playCurrentSong();
+    });
 }
