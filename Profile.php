@@ -59,7 +59,9 @@ if (isset($_SESSION['id'])) {
 <body class="background">
 
 <?php if (isset($_SESSION['id']) && $user_info): ?>
-    <?php echo htmlspecialchars($user_info['username']); ?></h1>
+    
+<?php echo isset($user_info) ? '<span class="user-name" style="font-size: 80px; font-weight: bold;">' . htmlspecialchars($user_info['username']) . '</span>' : 'Guest'; ?></h1>
+
     <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
 
     <?php if ($is_artist && $artist_info): ?>
@@ -85,7 +87,7 @@ if (isset($_SESSION['id'])) {
         <?php endif; ?>
 
     <?php else: ?>
-        <p>This is a regular user profile.</p>
+        <p>Account Type: Regular user</p>
     <?php endif; ?>
 
     <a href="DeleteAccount.php">Delete Account</a>
