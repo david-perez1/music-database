@@ -61,7 +61,7 @@ if (isset($_SESSION['id'])) {
 <?php if (isset($_SESSION['id']) && $user_info): ?>
    <div class="header-container">
     <h1>Welcome, <?php echo isset($user_info) ? '<span class="user-name">' . htmlspecialchars($user_info['username']) . '</span>' : 'Guest'; ?></h1>
-</div>
+    </div>
     <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
 
     <?php if ($is_artist && $artist_info): ?>
