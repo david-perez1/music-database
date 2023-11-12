@@ -1,4 +1,3 @@
-
 <?php
 
 // Include database connection
@@ -34,4 +33,3 @@ echo '</table>';
 $conn->close();
 
 ?>
-
