@@ -47,14 +47,15 @@ include('navloggedin.php');
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['SongID']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['SongTitle']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['artistName']) . "</td>";
+                        $artistName = htmlspecialchars($row['artistName']);
+                        echo "<td><a href='artistInfo.php?artistName=" . urlencode($row['artistName']) . "'>$artistName</a></td>";
                         echo "<td>" . htmlspecialchars($row['Genre']) . "</td>";
                         echo "<td class='no-border-cell'>";
                         
                         echo "<div class='dropdown'>";
 
                         echo "<a href='#' class='add-to-playlist-link'><img src='images/green-plus-button.png' height='25px' width='25px' alt='Add to Playlist'></img></a>";
-
+                        
                         echo "<div class='dropdown-content'>";
 
                         foreach ($playlists as $playlist){
