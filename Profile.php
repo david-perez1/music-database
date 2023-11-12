@@ -54,13 +54,75 @@ if (isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></title>
-    <!-- Add your styles here -->
+    <style>
+        body {
+            background-color: #232323;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            background-color: #232323;
+        }
+
+        .user-name {
+            font-size: 80px;
+            font-weight: bold;
+            color: white;
+        }
+
+        p {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        label {
+            color: white;
+        }
+
+        textarea {
+            color: black; /* Update the color if needed for visibility in the textarea */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .account-settings {
+            margin-top: 20px;
+            border-top: 1px solid white;
+            padding-top: 20px;
+        }
+    </style>
 </head>
 <body class="background">
 
 <?php if (isset($_SESSION['id']) && $user_info): ?>
     
-<?php echo isset($user_info) ? '<span class="user-name" style="font-size: 80px; font-weight: bold;">' . htmlspecialchars($user_info['username']) . '</span>' : 'Guest'; ?></h1>
+    <?php echo isset($user_info) ? '<span class="user-name" style="font-size: 80px; font-weight: bold;">' . htmlspecialchars($user_info['username']) . '</span>' : 'Guest'; ?></h1>
 
     <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
 
@@ -71,34 +133,41 @@ if (isset($_SESSION['id'])) {
         <p>Country: <?php echo htmlspecialchars($artist_info['Country']); ?></p>
         <p>Biography: <?php echo htmlspecialchars($artist_info['Biography']); ?></p>
 
-        <!-- Update Biography Form -->
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <label for="new_biography">Update Biography:</label>
-            <textarea id="new_biography" name="new_biography" rows="4" cols="50"></textarea>
-            <input type="submit" name="update_biography" value="Update Biography">
-        </form>
+        <!-- Account Settings -->
+        <div class="account-settings">
+            <h2>Account Settings</h2>
 
-        <?php if (isset($biographyUpdateSuccess)): ?>
-            <p><?php echo $biographyUpdateSuccess; ?></p>
-        <?php endif; ?>
+            <!-- Update Biography Form -->
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <label for="new_biography">Update Biography:</label><br>
+                <textarea id="new_biography" name="new_biography" rows="4" cols="50"></textarea><br>
+                <input type="submit" name="update_biography" value="Update Biography">
+            </form>
 
-        <?php if (isset($biographyUpdateError)): ?>
-            <p><?php echo $biographyUpdateError; ?></p>
-        <?php endif; ?>
+            <?php if (isset($biographyUpdateSuccess)): ?>
+                <p><?php echo $biographyUpdateSuccess; ?></p>
+            <?php endif; ?>
+
+            <?php if (isset($biographyUpdateError)): ?>
+                <p><?php echo $biographyUpdateError; ?></p>
+            <?php endif; ?>
+
+            <!-- Delete Account Link -->
+            <a href="DeleteAccount.php">Delete Account</a>
+        </div>
 
     <?php else: ?>
         <p>Account Type: Regular user</p>
     <?php endif; ?>
 
-    <a href="DeleteAccount.php">Delete Account</a>
 <?php else: ?>
     <!-- Display login form -->
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" required><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" required><br>
 
         <input type="submit" name="login" value="Login">
     </form>
