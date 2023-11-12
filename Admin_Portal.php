@@ -1,7 +1,7 @@
 <?php
 
 include('connection.php');
-
+// lol
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {

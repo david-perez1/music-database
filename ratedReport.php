@@ -11,7 +11,7 @@
         }
         th, td {
             border: 1px solid black;
-            padding: 8px; /* Optional: for padding inside cells */
+            padding: 8px; /* Optional: for padding inside cells xd */
         }
     </style>
 </head>

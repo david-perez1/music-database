@@ -19,7 +19,7 @@
 
 
 <?php
-// Include the database connection from connection.php
+// Include the database connection from connection.php :D
 require 'connection.php'; // Using require ensures the file must be present
 include('Admin_Portal.php');
 

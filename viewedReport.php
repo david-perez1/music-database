@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Viewed Report</title>
     <style>
-        /* Add your CSS styles here */
+        /* Add your CSS styles here :) */
         table {
             margin-top: 100px;
             border-collapse: collapse; /* Optional: for better border appearance */
