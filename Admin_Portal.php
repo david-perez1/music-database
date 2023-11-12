@@ -98,7 +98,7 @@ function setNavbarOpen($value)
             <div class="hidden md:flex items-center space-x-1">
                 <a href="genreReport.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Genres</a>
                 <a href="viewedReport.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Viewed Songs</a>
-                <a href="25Artists.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 25 Artists</a>
+                <a href="10Artists.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Artists</a>
                 <!-- <a href="PlayBar-Anneka.php?title=SongTitle" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Rated Songs</a> -->
                 <a href="ratedReport.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Rated Songs</a>
 
