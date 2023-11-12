@@ -41,7 +41,7 @@
       <button onclick="prev()">
         <img src="images/skip_backward.svg" alt="Back">
       </button>
-      <button onclick="playOrPause()">
+      <button onclick="playOrPauseSong()">
         <img src="images/play.svg" alt="Play">
       </button>
       <button onclick="next()">
