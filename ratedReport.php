@@ -1,22 +1,3 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Top 10 Rated Songs</title>
-    <style>
-        /* Add your CSS styles here :D */
-        table {
-            margin-top: 100px;
-            border-collapse: collapse; /* Optional: for better border appearance */
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px; /* Optional: for padding inside cells xd */
-        }
-    </style>
-</head>
-<body>
-
-
 <?php
 // Include the database connection from connection.php
 require 'connection.php'; // Using require ensures the file must be present
@@ -67,9 +48,3 @@ echo '</table>';
 // Close the connection
 $conn->close();
 ?>
-
-
-<!-- The rest of your HTML content goes here -->
-
-</body>
-</html>
