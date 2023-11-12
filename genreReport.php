@@ -2,7 +2,7 @@
 <?php
 
 // Include database connection
-require 'connection.php';
+include('connection.php');
 include('Admin_Portal.php');
 
 // SQL query to get top 10 genres by play_count 
