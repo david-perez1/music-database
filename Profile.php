@@ -59,7 +59,9 @@ if (isset($_SESSION['id'])) {
 <body class="background">
 
 <?php if (isset($_SESSION['id']) && $user_info): ?>
-    <h1>Welcome, <?php echo htmlspecialchars($user_info['username']); ?></h1>
+   <div class="header-container">
+    <h1>Welcome, <?php echo isset($user_info) ? '<span class="user-name">' . htmlspecialchars($user_info['username']) . '</span>' : 'Guest'; ?></h1>
+</div>
     <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
 
     <?php if ($is_artist && $artist_info): ?>
