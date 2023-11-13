@@ -2,6 +2,9 @@
 include('connection.php');
 include('navloggedin.php');
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if (!isset($_SESSION['id'])) {
      header('Location: index.php'); // Redirect to login page if not logged in
      exit;
