@@ -33,26 +33,7 @@
     }
 
     @media (min-width: 768px) {
-
-    /* #radius-shape-1 {
-      height: 220px;
-      width: 220px;
-      top: -60px;
-      left: -130px;
-      background: radial-gradient(#44006b, #ad1fff);
-      overflow: hidden;
     }
-
-    #radius-shape-2 {
-      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-      bottom: -60px;
-      right: -110px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(#44006b, #ad1fff);
-      overflow: hidden;
-    } */
-  }
   </style>
   <!-- Navbar -->
 
@@ -64,7 +45,7 @@
       <div class="grid items-center gap-20 lg:grid-cols-2">
         <div class="mt-12 lg:mt-0" style="z-index: 10">
           <h1 class="mt-0 mb-12 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl text-[hsl(218,81%,95%)]">
-            The best place <br /><span class="text-[hsl(218,81%,75%)]">to listen to music</span>
+            The best place <br /><span class="text-black">to listen to music</span>
           </h1>
           <p class="opacity-70 text-[hsl(218,81%,85%)] ">
             Welcome to Cougify, your music database.
@@ -74,7 +55,7 @@
           <div id="radius-shape-1" class="absolute rounded-full shadow-lg"></div>
           <div id="radius-shape-2" class="absolute shadow-lg"></div>
           <div
-            class="bg-blue-200 backdrop-blur-[25px] backdrop-saturate-[200%] block rounded-lg px-6 py-12 md:px-12">
+            class="bg-blue-200 backdrop-blur-[50px] backdrop-saturate-[200%] block rounded-lg px-6 py-12 md:px-12" style="max-width: 400px; margin-left: 110px; background-color: rgba(30, 30, 30, 1)">
             <form action="Login_Admin_Handler.php" method="POST">
               <div class="relative mb-6">
                 <div class="pb-2 pt-4">
