@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="cougar_paw_print_stylized_1.ico">
 
 <head>
   <meta charset="UTF-8">
