@@ -9,11 +9,14 @@ include('navloggedin.php');
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 
-// Start the session or check if the session already started
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
+function getMP3Duration($file_path) {
+    require_once 'entities/getID3/getID3-1.9.23/getid3/getid3.php';
 
+    $getID3 = new getID3;
+    $file_info = $getID3->analyze($file_path);
+
+    return isset($file_info['playtime_seconds']) ? $file_info['playtime_seconds'] : null;
+}
 
 // Check if user is logged in and the UserID is set in the session
 if(!isset($_SESSION['id'])) {
@@ -71,12 +74,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
     $fileData = $upload_directory . basename($_FILES["songToUpload"]["name"]);
 
     if (move_uploaded_file($temp_song_file, $fileData)) {
-        // Prepare an insert statement with ArtistID
-        $insert_query = "INSERT INTO song (SongTitle, ReleaseDate, ArtistName, Genre, FileData, ArtistID) VALUES (?, ?, ?, ?, ?, ?)";
+        // Get the duration of the uploaded MP3 file
+        $duration = getMP3Duration($fileData);
+
+        // Prepare an insert statement with ArtistID and Duration
+        $insert_query = "INSERT INTO song (SongTitle, ReleaseDate, ArtistName, Genre, FileData, ArtistID, Duration) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         if ($stmt = $conn->prepare($insert_query)) {
-            // Bind the ArtistID along with other parameters
-            $stmt->bind_param("sssssi", $songTitle, $releaseDate, $artistName, $genre, $fileData, $artistID);
+            // Bind the ArtistID, Duration, and other parameters
+            $stmt->bind_param("sssssid", $songTitle, $releaseDate, $artistName, $genre, $fileData, $artistID, $duration);
 
             if ($stmt->execute()) {
                 echo '<div style="text-align: center; margin-top: 20px; padding: 10px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; width: 50%; margin-left: auto; margin-right: auto;">
