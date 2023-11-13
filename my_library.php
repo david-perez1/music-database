@@ -59,23 +59,21 @@ include('playbar.php');
         }
 
         .content {
-            flex-grow: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .content h2 {
-            margin-bottom: 20px;
+        flex-grow: 1;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
         }
 
         .song-list li {
-            cursor: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            transition: background-color 0.3s ease;
+        cursor: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        transition: background-color 0.3s ease;
         }
 
         .song-list li:last-child {
@@ -86,18 +84,16 @@ include('playbar.php');
             background-color: #999999;
         }
 
-        .song-title {
+        .song-title,
+        .song-artist,
+        .song-duration,
+        .song-rating-value {
             flex-grow: 1;
-        }
-
-        .song-duration {
-            margin-left: 10px;
-            color: #888;
-        }
-
-        .song-artist {
             text-align: center;
-            flex-grow: 6;
+        }
+
+        .rating-value {
+            flex-grow: 0.5; /* Adjust as needed */
         }
 
         .add-button {
