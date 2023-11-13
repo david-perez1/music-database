@@ -36,7 +36,7 @@ function setNavbarOpen($value)
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="shortcut icon" type="image/x-icon" href="Music header.ico">
+<link rel="shortcut icon" type="image/x-icon" href="icon.ico">
 <div>
 
   <nav class="bg-gray-100">
