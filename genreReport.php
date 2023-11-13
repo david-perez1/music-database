@@ -37,14 +37,29 @@ if (isset($_GET['startDate'], $_GET['endDate']) && !empty($_GET['startDate']) &&
     $filter = "WHERE ReleaseDate BETWEEN '$startDate' AND '$endDate'";
     $yearColumn = ", YEAR(ReleaseDate) AS Year";
 }
+// Check if the country filter is set
+if (isset($_GET['country']) && !empty($_GET['country'])) {
+    $country = $conn->real_escape_string($_GET['country']);
+    // If other filters are already set, append with AND, otherwise start with WHERE
+    $filter .= ($filter ? " AND " : "WHERE ") . "a.Country = '$country'";
+}
+// Combined year and country filter
+if (isset($_GET['combinedYear'], $_GET['combinedCountry']) && !empty($_GET['combinedYear']) && !empty($_GET['combinedCountry'])) {
+    $combinedYear = $conn->real_escape_string($_GET['combinedYear']);
+    $combinedCountry = $conn->real_escape_string($_GET['combinedCountry']);
+    $filter = "WHERE YEAR(ReleaseDate) = $combinedYear AND a.Country = '$combinedCountry'";
+    $yearColumn = ", YEAR(ReleaseDate) AS Year";
+}
 
 // SQL query to get genres based on the filter
-$sql = "SELECT genre, SUM(play_count) AS total_plays, YEAR(ReleaseDate) AS Year
-        FROM song 
+$sql = "SELECT s.genre, a.Country, SUM(s.play_count) AS total_plays, YEAR(s.ReleaseDate) AS Year
+        FROM song s
+        JOIN artist a ON s.ArtistID = a.ArtistID
         $filter
-        GROUP BY genre, YEAR(ReleaseDate)
+        GROUP BY s.genre, a.Country, YEAR(s.ReleaseDate)
         ORDER BY total_plays DESC
         LIMIT 10";
+
 
 // Execute query
 $result = $conn->query($sql); 
@@ -87,15 +102,28 @@ echo '<form action="" method="get" class="filter-form">
         <input type="submit" value="Filter by Date Range"class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
+echo '<form action="" method="get" class="filter-form">
+        <label for="country" class="filter-label">Filter by Country:</label>
+        <input type="text" id="country" name="country">
+        <input type="submit" value="Filter by Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+      </form>';
+      
+echo '<form action="" method="get" class="filter-form">
+        <label for="combinedYear" class="filter-label">Year:</label>
+        <input type="number" id="combinedYear" name="combinedYear" min="1900" max="2099" step="1">
+        <label for="combinedCountry" class="filter-label">Country:</label>
+        <input type="text" id="combinedCountry" name="combinedCountry">
+        <input type="submit" value="Filter by Year and Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+      </form>';
 
 echo '</div>';
 // Start HTML table
 echo '<table border="1" style="margin-top:25px;">';
-echo '<tr><th>Genre</th><th>Total Plays</th><th>Year</th></tr>';
+echo '<tr><th>Genre</th><th>Total Plays</th><th>Year</th><th>Country</th></tr>';
 
 // Fetch and display each row
 while ($row = $result->fetch_assoc()) {
-    echo "<tr><td>{$row['genre']}</td><td>{$row['total_plays']}</td><td>{$row['Year']}</td></tr>";
+    echo "<tr><td>{$row['genre']}</td><td>{$row['total_plays']}</td><td>{$row['Year']}</td><td>{$row['Country']}</td></tr>";
 }
 
 echo '</table>';
