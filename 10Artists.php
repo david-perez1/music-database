@@ -89,23 +89,34 @@ while ($yearRow = $yearResult->fetch_assoc()) {
     $years[] = $yearRow['Year'];
 }
 
+
+// Centered filter forms
+// echo '<div style="text-align: center; margin: auto;">';
 echo '<div class="filter-section">';
+
 
 // Year filter
 echo '<form action="" method="get" class="filter-form">
-        <label for="year" class="filter-label">Filter by Year:</label>
-        <select id="year" name="year">
-            <option value="">Select Year</option>';
-
-while ($yearRow = $yearResult->fetch_assoc()) {
-    echo '<option value="'.htmlspecialchars($yearRow['Year']).'">'.htmlspecialchars($yearRow['Year']).'</option>';
+        <div class="year-range-filter">
+            <label for="startYear" class="filter-label">Filter by Year:</label>
+            <select id="startYear" name="startYear">
+                <option value="">Select Year</option>';
+foreach ($years as $year) {
+    echo '<option value="'.htmlspecialchars($year).'">'.htmlspecialchars($year).'</option>';
 }
+echo '</select>';
 
 echo '</select>
         <input type="submit" value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
 
+// // Specific date filter
+// echo '<form action="" method="get" class="filter-form">
+//         <label for="releaseDate" class="filter-label">Filter by Release Date:</label>
+//         <input type="date" id="releaseDate" name="releaseDate">
+//         <input type="submit" value="Filter by Release Date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+//       </form>';
 
 // Year range filter
 echo '<form action="" method="get" class="filter-form">
@@ -129,19 +140,25 @@ echo '</select>
         </div>
       </form>';
 
+// Date range filter
+// echo '<form action="" method="get" class="filter-form">
+//         <label for="startDate" class="filter-label ">Start Date:</label>
+//         <input type="date" id="startDate" name="startDate">
+//         <label for="endDate" class="filter-label">End Date:</label>
+//         <input type="date" id="endDate" name="endDate">
+//         <input type="submit" value="Filter by Date Range"class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+//       </form>';
 
 // filter by country
-echo '<form action="" method="get" class="filter-form">
-        <label for="country" class="filter-label">Filter by Country:</label>
-        <select id="country" name="country">
-            <option value="">Select Country</option>';
-
-while ($countryRow = $countryResult->fetch_assoc()) {
-    echo '<option value="'.htmlspecialchars($countryRow['Country']).'">'.htmlspecialchars($countryRow['Country']).'</option>';
+echo '<label for="combinedCountry" class="filter-label">Filter by Country:</label>
+            <select id="combinedCountry" name="combinedCountry">
+                <option value="">Select Country</option>';
+foreach ($countries as $country) {
+    echo '<option value="'.htmlspecialchars($country).'">'.htmlspecialchars($country).'</option>';
 }
-
 echo '</select>
-        <input type="submit" value="Filter by Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+            <input type="submit" value="Filter by Year and Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+        </div>
       </form>';
 
 //filter by year(date of birth) and country
