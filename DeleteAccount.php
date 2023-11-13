@@ -17,7 +17,6 @@ $stmt->bind_param('i', $userIdToDelete);
 
 if ($stmt->execute()) {
     // Account deleted successfully, you can also redirect the user to a confirmation page
-    echo "Account deleted successfully!";
     header('Location: index.php'); // Redirect to login page if not logged in
     exit;
 } else {
