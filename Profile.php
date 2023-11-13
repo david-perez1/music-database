@@ -131,7 +131,6 @@ if (isset($_SESSION['id'])) {
         <p>Artist Name: <?php echo htmlspecialchars($artist_info['ArtistName']); ?></p>
         <p>Date of Birth: <?php echo htmlspecialchars($artist_info['DateOfBirth']); ?></p>
         <p>Country: <?php echo htmlspecialchars($artist_info['Country']); ?></p>
-        <p>Biography: <?php echo htmlspecialchars($artist_info['Biography']); ?></p>
 
         <!-- Account Settings -->
         <div class="account-settings">
@@ -151,14 +150,25 @@ if (isset($_SESSION['id'])) {
             <?php if (isset($biographyUpdateError)): ?>
                 <p><?php echo $biographyUpdateError; ?></p>
             <?php endif; ?>
-
-            <!-- Delete Account Link -->
-            <a href="DeleteAccount.php">Delete Account</a>
         </div>
+
+        <!-- Biography Section (only for artists) -->
+        <h2>Biography</h2>
+        <p><?php echo htmlspecialchars($artist_info['Biography']); ?></p>
 
     <?php else: ?>
         <p>Account Type: Regular user</p>
+
+        <!-- Account Settings (for regular users) -->
+        <div class="account-settings">
+            <h2>Account Settings</h2>
+            <!-- Add any additional settings for regular users here -->
+        </div>
+
     <?php endif; ?>
+
+    <!-- Delete Account Link -->
+    <a href="DeleteAccount.php">Delete Account</a>
 
 <?php else: ?>
     <!-- Display login form -->
