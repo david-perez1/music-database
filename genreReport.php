@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+</html>
+<link href="allWebApp.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+</head>
 <?php
 
 // Include database connection
@@ -51,44 +63,46 @@ $result = $conn->query($sql);
 
 
 // Centered filter forms
-echo '<div style="text-align: center; margin: auto;">';
+// echo '<div style="text-align: center; margin: auto;">';
+echo '<div class="filter-section">';
+
 
 // Year filter
-echo '<form action="" method="get">
-        <label for="year">Filter by Year:</label>
+echo '<form action="" method="get" class="filter-form">
+        <label for="year" class="filter-label">Filter by Year:</label>
         <input type="number" id="year" name="year" min="1900" max="2099" step="1">
-        <input type="submit" value="Filter by Year">
+        <input type="submit"  value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
 // Specific date filter
-echo '<form action="" method="get">
-        <label for="releaseDate">Filter by Release Date:</label>
+echo '<form action="" method="get" class="filter-form">
+        <label for="releaseDate" class="filter-label">Filter by Release Date:</label>
         <input type="date" id="releaseDate" name="releaseDate">
-        <input type="submit" value="Filter by Release Date">
+        <input type="submit" value="Filter by Release Date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
 // Year range filter
-echo '<form action="" method="get">
-        <label for="startYear">Start Year:</label>
+echo '<form action="" method="get" class="filter-form">
+        <label for="startYear" class="filter-label">Start Year:</label>
         <input type="number" id="startYear" name="startYear" min="1900" max="2099" step="1">
-        <label for="endYear">End Year:</label>
+        <label for="endYear" class="filter-label">End Year:</label>
         <input type="number" id="endYear" name="endYear" min="1900" max="2099" step="1">
-        <input type="submit" value="Filter by Year Range">
+        <input type="submit" value="Filter by Year Range" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
 // Date range filter
-echo '<form action="" method="get">
-        <label for="startDate">Start Date:</label>
+echo '<form action="" method="get" class="filter-form">
+        <label for="startDate" class="filter-label ">Start Date:</label>
         <input type="date" id="startDate" name="startDate">
-        <label for="endDate">End Date:</label>
+        <label for="endDate" class="filter-label">End Date:</label>
         <input type="date" id="endDate" name="endDate">
-        <input type="submit" value="Filter by Date Range">
+        <input type="submit" value="Filter by Date Range"class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
 
 echo '</div>';
 // Start HTML table
-echo '<table border="1" style="margin-top:100px;">';
+echo '<table border="1" style="margin-top:25px;">';
 echo '<tr><th>Genre</th><th>Total Plays</th><th>Year</th></tr>';
 
 // Fetch and display each row
@@ -112,5 +126,5 @@ echo '</table>';
 <link href="allWebApp.css" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Top 10</title>
 </head>
