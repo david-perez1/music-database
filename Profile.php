@@ -56,73 +56,103 @@ if (isset($_SESSION['id'])) {
     <title><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></title>
     <style>
         body {
-            background-color: #232323;
-            color: white;
-            font-family: Arial, sans-serif;
+            background-color: #333; /* Light background color */
+            color:#232323; /* Dark text color */ 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        .background {
-            background-color: #232323;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #3498db; /* Header background color */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
         }
 
         .user-name {
-            font-size: 80px;
+            font-size: 36px;
             font-weight: bold;
-            color: white;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
-        p {
-            color: white;
-        }
-
-        h2 {
-            color: white;
-        }
-
-        label {
-            color: white;
+        p, h2, label {
+            color: #555; /* Slightly darker text color */
         }
 
         textarea {
-            color: black; /* Update the color if needed for visibility in the textarea */
+            color: #333;
         }
 
         input[type="text"],
-        input[type="password"],
         textarea {
-            background-color: #333;
-            color: white;
-            border: 1px solid white;
-            padding: 8px;
+            background-color: #ecf0f1; /* Lighter background for input fields */
+            color: #333;
+            border: 1px solid #bdc3c7; /* Lighter border color */
+            padding: 10px;
             margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+            background-color: #2ecc71; /* Submit button color */
             color: white;
-            padding: 10px;
+            padding: 12px;
             border: none;
             cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #27ae60; /* Hover color for submit button */
         }
 
         .account-settings {
             margin-top: 20px;
-            border-top: 1px solid white;
+            border-top: 1px solid #bdc3c7; /* Lighter border color */
             padding-top: 20px;
         }
     </style>
 </head>
-<body class="background">
+<body>
+
+<div class="container">
+<div class="header" style="background-color: #ff0000; /* Red color */">
+    <h1 style="font-size: 36px; font-weight: bold; color: #ffffff;"><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></h1>
+</div>
+
+
+    <div class="account-settings" style="color: #ffffff;">
+    <h2 style="font-size: 24px; color: #ffffff;">Account Settings</h2>
+    <p style="font-size: 24px; color: #ffffff;">Update your account preferences below:</p>
+    <!-- Add any additional settings for regular users here -->
+</div>
+
+
+
+        <!-- Additional account settings can be added here -->
+    </div>
+</div>
+
+</body>
+</html>
+
 
 <?php if (isset($_SESSION['id']) && $user_info): ?>
     
-    <?php echo isset($user_info) ? '<span class="user-name" style="font-size: 80px; font-weight: bold;">' . htmlspecialchars($user_info['username']) . '</span>' : 'Guest'; ?></h1>
+    <?php echo isset($user_info) ? '<div style="text-align: center;"><span class="user-name" style="font-size: 80px; font-weight: bold; color: #ffffff;">' . htmlspecialchars($user_info['username']) . '</span></div>' : '<div style="text-align: center; color: #ffffff;">Guest</div>'; ?>
+
 
     <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
 
@@ -156,19 +186,28 @@ if (isset($_SESSION['id'])) {
         <h2>Biography</h2>
         <p><?php echo htmlspecialchars($artist_info['Biography']); ?></p>
 
-    <?php else: ?>
-        <p>Account Type: Regular user</p>
+        <?php else: ?>
 
-        <!-- Account Settings (for regular users) -->
-        <div class="account-settings">
-            <h2>Account Settings</h2>
-            <!-- Add any additional settings for regular users here -->
-        </div>
+            <div class="user-details" style="text-align: center;">
+        <table style="margin: 0 auto; text-align: left;">
+            <tr>
+                <th>Email:</th>
+                <td><?php echo htmlspecialchars($user_info['email']); ?></td>
+            </tr>
+            <tr>
+                <th>Account Type:</th>
+                <td>Regular User</td>
+            </tr>
+        </table>
 
-    <?php endif; ?>
+        
 
-    <!-- Delete Account Link -->
-    <a href="DeleteAccount.php">Delete Account</a>
+        <!-- Delete Account Link -->
+        <a href="DeleteAccount.php" class="delete-account-link" style="display: block; margin-top: 20px; color: #ffffff;">Delete Account</a>
+    </div>
+<?php endif; ?>
+
+>
 
 <?php else: ?>
     <!-- Display login form -->
