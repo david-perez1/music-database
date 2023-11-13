@@ -34,42 +34,6 @@ function setNavbarOpen($value)
   });
 </script>
 
-<!-- <!Doctype html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta charset="utf-8">
-    <title>Cougify</title>
-    <link href="allWebApp.css" rel="stylesheet" >
- 
-</head>
-
-<body class = "background">
-    <nav class="navtop">
-        <div>
-            <h1>Cougify</h1>
-        </div>
-    </nav>
-    <div class="content update">
-        <div class="parent">
-            <div class="category-container">
-                <div class="portal-category">
-                    <div class="category-image">
-                        <img src="attractions.png">
-                    </div>
-                    <div class="category-info">
-                        <h2 class="category-name">Attraction Report</h2>
-                        <p class="category-description"></p>
-                        <a href="attractionReport.html"><button class="visit-link">Click Here</button></a>
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-    </div>
 </body> -->
 <body class = "background">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
