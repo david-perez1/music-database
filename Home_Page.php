@@ -58,16 +58,16 @@
     </div>
     <div class="container">
       <a href="my_library.php">
-        <div style="background-image: url('spongebobpic.jpeg');"></div>
+        <div style="background-image: url('imageUploads/spongebobpic.jpeg');"></div>
       </a>
       <a href="my_library.php">
-        <div style="background-image: url('edmpicture.jpeg');"></div>
+        <div style="background-image: url('imageUploads/edmpicture.jpeg');"></div>
       </a>
       <a href="my_library.php">
-        <div style="background-image: url('oceanpic.jpeg');"></div>
+        <div style="background-image: url('imageUploads/oceanpic.jpeg');"></div>
       </a>
       <a href="my_library.php">
-        <div style="background-image: url('djpic.jpeg');"></div>
+        <div style="background-image: url('imageUploads/djpic.jpeg');"></div>
       </a>
     </div>
   </div>
