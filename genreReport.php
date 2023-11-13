@@ -1,4 +1,3 @@
-<link href="allWebApp.css" rel="stylesheet">
 <?php
 
 // Include database connection
@@ -103,3 +102,15 @@ echo '</table>';
 
 
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+</html>
+<link href="allWebApp.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+</head>
