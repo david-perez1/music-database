@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="shortcut icon" type="image/x-icon" href="Music header.ico">
+<link rel="shortcut icon" type="image/x-icon" href="icon.ico">
 
 <head>
   <meta charset="UTF-8">
