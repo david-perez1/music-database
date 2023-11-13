@@ -48,7 +48,7 @@ if (isset($_GET['playlistID'])) {
                     // Rating updated successfully
                     // echo "Rating updated successfully!";
                     // Redirect to my_library.php after successful rating update
-                    header("Location: my_library.php#playlistID=" . $songID);
+                    header("Location: my_library.php#playlistID=" . $playlistID);
                     exit();
                 } else {
                     // Error updating rating
