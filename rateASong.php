@@ -2,6 +2,12 @@
 // rateASong.php
 
 include('connection.php');
+session_start();
+// Assume $userID is obtained from session or other means of user identification
+// $userID = $_SESSION['UserID'] ; // Replace with actual user session variable or method to retrieve user ID
+if (isset($_SESSION['id'])) {
+    $userID = $_SESSION['id'];
+}
 
 // Check if PlaylistID is set
 if (isset($_GET['playlistID'])) {
@@ -15,21 +21,30 @@ if (isset($_GET['playlistID'])) {
 
         // Validate that the rating value is an integer
         if (filter_var($ratingValue, FILTER_VALIDATE_INT) !== false) {
-            // Rating is a valid integer, you can now update the rating
-    
-            // Check if a rating already exists for the given SongID
-            $existingRatingQuery = mysqli_query($con, "SELECT * FROM rating_system WHERE SongID = '$songID'");
-            
-            if ($existingRatingQuery) {
-                if (mysqli_num_rows($existingRatingQuery) > 0) {
+            // Prepare a statement for the existing rating check
+            $stmt = $con->prepare("SELECT * FROM rating_system WHERE SongID = ? AND UserID = ?");
+            $stmt->bind_param("ii", $songID, $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+
+            if ($result) {
+                if ($result->num_rows > 0) {
                     // Rating already exists, update the existing rating
-                    $updateQuery = mysqli_query($con, "UPDATE rating_system SET RatingValue = '$ratingValue' WHERE SongID = '$songID'");
+                    $stmt = $con->prepare("UPDATE rating_system SET RatingValue = ? WHERE SongID = ? AND UserID = ?");
+                    $stmt->bind_param("iii", $ratingValue, $songID, $userID);
                 } else {
                     // No rating exists, insert a new rating
-                    $updateQuery = mysqli_query($con, "INSERT INTO rating_system (SongID, RatingValue) VALUES ('$songID', '$ratingValue')");
+                    // Note: RatingID is auto-generated, no need to bind it
+                    $stmt = $con->prepare("INSERT INTO rating_system (UserID, RatingValue, SongID) VALUES (?, ?, ?)");
+                    $stmt->bind_param("iii", $userID, $ratingValue, $songID);
                 }
-    
-                if ($updateQuery) {
+                
+                // Execute the update or insert
+                $success = $stmt->execute();
+                $stmt->close();
+
+                if ($success) {
                     // Rating updated successfully
                     echo "Rating updated successfully!";
                     // Redirect to my_library.php after successful rating update
@@ -37,11 +52,11 @@ if (isset($_GET['playlistID'])) {
                     exit();
                 } else {
                     // Error updating rating
-                    echo "Error updating rating: " . mysqli_error($con);
+                    echo "Error updating rating: " . $con->error;
                 }
             } else {
                 // Error with the query
-                echo "Error with the query: " . mysqli_error($con);
+                echo "Error with the query: " . $con->error;
             }
         } else {
             // Invalid rating value
