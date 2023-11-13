@@ -55,7 +55,6 @@ function setNavbarOpen($value)
               <span class="font-bold">Cougify</span>
             </a>
           </div>
-          </div>
 
           <!-- primary nav -->
           <div class="hidden md:flex items-center space-x-1">
