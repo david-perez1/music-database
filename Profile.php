@@ -154,7 +154,7 @@ if (isset($_SESSION['id'])) {
     <?php echo isset($user_info) ? '<div style="text-align: center;"><span class="user-name" style="font-size: 80px; font-weight: bold; color: #ffffff;">' . htmlspecialchars($user_info['username']) . '</span></div>' : '<div style="text-align: center; color: #ffffff;">Guest</div>'; ?>
 
 
-    <p>Email: <?php echo htmlspecialchars($user_info['email']); ?></p>
+   
 
     <?php if ($is_artist && $artist_info): ?>
         <h2>Artist Details</h2>
