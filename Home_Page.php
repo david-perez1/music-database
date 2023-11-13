@@ -67,7 +67,7 @@
         <div style="background-image: url('imageUploads/oceanpic.jpeg');"></div>
       </a>
       <a href="my_library.php">
-        <div style="background-image: url('imageUploads/djpic.jpeg');"></div>
+        <div style="background-image: url('imageUploads/djshaq.png');"></div>
       </a>
     </div>
   </div>
