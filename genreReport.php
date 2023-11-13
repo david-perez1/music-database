@@ -65,17 +65,53 @@ $sql = "SELECT s.genre, a.Country, SUM(s.play_count) AS total_plays, YEAR(s.Rele
 $result = $conn->query($sql); 
 
 
+// Query to get unique years
+$yearQuery = "SELECT DISTINCT YEAR(ReleaseDate) AS Year FROM song ORDER BY Year DESC";
+$yearResult = $conn->query($yearQuery);
+
+$years = [];
+while ($row = $yearResult->fetch_assoc()) {
+    $years[] = $row['Year'];
+}
+
+
+//for dropdown country
+$countryQuery = "SELECT DISTINCT Country FROM artist ORDER BY Country";
+$countryResult = $conn->query($countryQuery);
+
+$countries = [];
+while ($countryRow = $countryResult->fetch_assoc()) {
+    $countries[] = $countryRow['Country'];
+}
+
+
 // Centered filter forms
 // echo '<div style="text-align: center; margin: auto;">';
 echo '<div class="filter-section">';
 
 
 // Year filter
-echo '<form action="" method="get" class="filter-form">
-        <label for="year" class="filter-label">Filter by Year:</label>
-        <input type="number" id="year" name="year" min="1900" max="2099" step="1">
-        <input type="submit"  value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+// echo '<form action="" method="get" class="filter-form">
+//         <label for="year" class="filter-label">Filter by Year:</label>
+//         <input type="number" id="year" name="year" min="1900" max="2099" step="1">
+//         <input type="submit"  value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+//       </form>';
+
+// Dropdown for years
+echo '<form action="" method="get" class="filter-form">';
+echo '<label for="year" class="filter-label">Filter by Year:</label>';
+echo '<select name="year" id="year">';
+echo '<option value="">Select Year</option>';
+
+// Loop to fetch years as options
+while ($row = $yearResult->fetch_assoc()) {
+    echo "<option value='{$row['Year']}'>{$row['Year']}</option>";
+}
+
+echo '</select>
+        <input type="submit" value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
+
 
 // Specific date filter
 echo '<form action="" method="get" class="filter-form">
@@ -85,14 +121,26 @@ echo '<form action="" method="get" class="filter-form">
       </form>';
 
 // Year range filter
-echo '<form action="" method="get" class="filter-form">
-        <label for="startYear" class="filter-label">Start Year:</label>
-        <input type="number" id="startYear" name="startYear" min="1900" max="2099" step="1">
-        <label for="endYear" class="filter-label">End Year:</label>
-        <input type="number" id="endYear" name="endYear" min="1900" max="2099" step="1">
-        <input type="submit" value="Filter by Year Range" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
-      </form>';
+// Dropdowns for year range
+echo '<form action="" method="get" class="filter-form">';
+echo '<label for="startYear" class="filter-label">Start Year:</label>';
+echo '<select name="startYear" id="startYear">';
+echo '<option value="">Select Start Year</option>';
+foreach ($years as $year) {
+    echo "<option value='$year'>$year</option>";
+}
+echo '</select>';
 
+echo '<label for="endYear" class="filter-label">End Year:</label>';
+echo '<select name="endYear" id="endYear">';
+echo '<option value="">Select End Year</option>';
+foreach ($years as $year) {
+    echo "<option value='$year'>$year</option>";
+}
+echo '</select>
+            <input type="submit" value="Filter by Year Range" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+        </div>
+      </form>';
 // Date range filter
 echo '<form action="" method="get" class="filter-form">
         <label for="startDate" class="filter-label ">Start Date:</label>
@@ -102,12 +150,13 @@ echo '<form action="" method="get" class="filter-form">
         <input type="submit" value="Filter by Date Range"class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
 
+// filter by country
 echo '<form action="" method="get" class="filter-form">
         <label for="country" class="filter-label">Filter by Country:</label>
         <input type="text" id="country" name="country">
         <input type="submit" value="Filter by Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
       </form>';
-      
+
 echo '<form action="" method="get" class="filter-form">
         <label for="combinedYear" class="filter-label">Year:</label>
         <input type="number" id="combinedYear" name="combinedYear" min="1900" max="2099" step="1">
