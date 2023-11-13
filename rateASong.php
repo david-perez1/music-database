@@ -31,13 +31,17 @@ if (isset($_GET['playlistID'])) {
             if ($result) {
                 if ($result->num_rows > 0) {
                     // Rating already exists, update the existing rating
-                    $stmt = $con->prepare("UPDATE rating_system SET RatingValue = ? WHERE SongID = ? AND UserID = ?");
-                    $stmt->bind_param("iii", $ratingValue, $songID, $userID);
+                    $stmt = $con->prepare("UPDATE rating_system SET RatingValue = ?, RatingDate = ? WHERE SongID = ? AND UserID = ?");
+                    $currentDate = date('Y-m-d'); // This will format the date as YYYY-MM-DD
+                    $stmt->bind_param("isii", $ratingValue, $currentDate, $songID, $userID);
+                    
                 } else {
                     // No rating exists, insert a new rating
                     // Note: RatingID is auto-generated, no need to bind it
-                    $stmt = $con->prepare("INSERT INTO rating_system (UserID, RatingValue, SongID) VALUES (?, ?, ?)");
-                    $stmt->bind_param("iii", $userID, $ratingValue, $songID);
+                    $stmt = $con->prepare("INSERT INTO rating_system (UserID, RatingValue, SongID, RatingDate) VALUES (?, ?, ?, ?)");
+                    $currentDate = date('Y-m-d'); // This will format the date as YYYY-MM-DD, which is the standard DATE format in MySQL
+                    $stmt->bind_param("iiis", $userID, $ratingValue, $songID, $currentDate);
+
                 }
                 
                 // Execute the update or insert
