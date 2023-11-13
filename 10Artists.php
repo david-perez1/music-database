@@ -98,13 +98,12 @@ echo '<div class="filter-section">';
 // Year filter
 echo '<form action="" method="get" class="filter-form">
         <div class="year-range-filter">
-            <label for="startYear" class="filter-label">Filter by Year:</label>
-            <select id="startYear" name="startYear">
+            <label for="year" class="filter-label">Filter by Year:</label>
+            <select id="year" name="year">
                 <option value="">Select Year</option>';
 foreach ($years as $year) {
     echo '<option value="'.htmlspecialchars($year).'">'.htmlspecialchars($year).'</option>';
 }
-echo '</select>';
 
 echo '</select>
         <input type="submit" value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
@@ -128,6 +127,9 @@ foreach ($years as $year) {
     echo '<option value="'.htmlspecialchars($year).'">'.htmlspecialchars($year).'</option>';
 }
 echo '</select>';
+
+
+
 
 echo '<label for="endYear" class="filter-label">End Year:</label>
             <select id="endYear" name="endYear">
@@ -157,7 +159,7 @@ foreach ($countries as $country) {
     echo '<option value="'.htmlspecialchars($country).'">'.htmlspecialchars($country).'</option>';
 }
 echo '</select>
-            <input type="submit" value="Filter by Year and Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+            <input type="submit" value="Filter by Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
         </div>
       </form>';
 
