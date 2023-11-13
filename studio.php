@@ -6,14 +6,6 @@
 
 include('connection.php');
 include('navloggedin.php');
-<?php
-// Start the session or check if the session already started
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
-
-include('connection.php');
-include('navloggedin.php');
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 
