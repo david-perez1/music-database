@@ -62,7 +62,7 @@ include('navloggedin.php');
                             $playlistID = $playlist['PlaylistID'];
                             $songID = $row['SongID'];
 
-                            echo "<a href='add_to_playlist.php?songID=" . $row['SongID'] . "&playlistID=" . $playlistID . "&query=" . urlencode($_GET['query']) . "'>" . $playlist['Playlist Title'] . "</a>";
+                            echo "<a href='add_to_playlist.php?songID=" . $row['SongID'] . "&playlistID=" . $playlistID . "&query=" . urlencode($_GET['query']) . "'>" . $playlist['PlaylistTitle'] . "</a>";
                         }
                         
                         echo "</div></div>";
