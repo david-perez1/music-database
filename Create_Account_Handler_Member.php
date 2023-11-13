@@ -35,10 +35,10 @@ if ($stmt = $connMember->prepare('SELECT member_ID FROM users WHERE username = ?
     } 
 }
 
-$currentDate = date('Y-m-d H:i:s');
-if ($stmt = $connMember->prepare('INSERT INTO users (username, password, email, registration_date) VALUES (?, ?, ?, ?)')) {
+// Insert new user
+if ($stmt = $connMember->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)')) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $stmt->bind_param('ssss', $_POST['username'], $password, $_POST['email'], $currentDate);
+    $stmt->bind_param('sss', $_POST['username'], $password, $email);
     $stmt->execute();
     header('Location: index.php?accountCreation=success');
 } else {
