@@ -2,10 +2,10 @@
 include('connection.php');
 include('navloggedin.php');
 
-// if (!isset($_SESSION['id'])) {
-//     header('Location: index.php'); // Redirect to login page if not logged in
-//     exit;
-// }
+if (!isset($_SESSION['id'])) {
+     header('Location: index.php'); // Redirect to login page if not logged in
+     exit;
+}
 
 // Get the current user's ID
 $userIdToDelete = $_SESSION['id'];
