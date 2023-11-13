@@ -1537,3 +1537,12 @@ th {
   width: 100%; /* Adjust as necessary, or use max-width for better responsiveness */
 }
 
+.error-message {
+    color: red; /* Sets the text color to red */
+    background-color: #ffdddd; /* Light red background for visibility */
+    border: 1px solid red; /* Red border for emphasis */
+    padding: 10px; /* Adds some space inside the div */
+    margin: 10px 0; /* Adds some space outside the div */
+    border-radius: 5px; /* Optional: Rounds the corners of the div */
+    font-weight: bold; /* Makes the text bold */
+}
