@@ -169,8 +169,8 @@ echo '<form action="" method="get" class="filter-form">
       </form>';
 
 // filter by country
-echo '<label for="combinedCountry" class="filter-label">Filter by Country:</label>
-            <select id="combinedCountry" name="combinedCountry">
+echo '<label for="country" class="filter-label">Filter by Country:</label>
+            <select id="country" name="country">
                 <option value="">Select Country</option>';
 foreach ($countries as $country) {
     echo '<option value="'.htmlspecialchars($country).'">'.htmlspecialchars($country).'</option>';
@@ -215,5 +215,5 @@ echo '</table>';
 <link href="allWebApp.css" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Top 10 Genre</title>
+<title>Top 10</title>
 </head>
