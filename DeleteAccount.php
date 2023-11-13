@@ -3,7 +3,7 @@ include('connection.php');
 include('navloggedin.php');
 
 if (!isset($_SESSION['id'])) {
-    header('Location: login.php'); // Redirect to login page if not logged in
+    header('Location: index.php'); // Redirect to login page if not logged in
     exit;
 }
 
