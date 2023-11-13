@@ -34,7 +34,7 @@ function setNavbarOpen($value)
   });
 </script>
 
-</body> -->
+
 <body class = "background">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
