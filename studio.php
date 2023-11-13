@@ -7,6 +7,9 @@
 include('connection.php');
 include('navloggedin.php');
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 function getMP3Duration($file_path) {
     require_once 'entities/getID3/getID3-1.9.23/getid3/getid3.php';
 
