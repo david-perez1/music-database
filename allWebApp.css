@@ -1505,4 +1505,31 @@ th {
   font-size: 80px;
   color: #ffffff;
 }
+.filter-section {
+  background-color: #000; /* Adjust the color to match your design */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-form {
+  /* display: flex; */
+  /* align: right; */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.filter-label {
+  color: white; /* This will make the text white */
+  padding: 8px;
+}
+
+.filter-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%; /* Adjust as necessary, or use max-width for better responsiveness */
+}
 
