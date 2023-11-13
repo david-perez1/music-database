@@ -14,8 +14,6 @@ ini_set('display_errors', 1);
 //     session_start();
 // }
 
-include('connection.php');
-include('navloggedin.php');
 
 // Check if user is logged in and the UserID is set in the session
 if(!isset($_SESSION['id'])) {
