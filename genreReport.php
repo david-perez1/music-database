@@ -97,20 +97,35 @@ echo '<div class="filter-section">';
 //         <input type="submit"  value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
 //       </form>';
 
-// Dropdown for years
-echo '<form action="" method="get" class="filter-form">';
-echo '<label for="year" class="filter-label">Filter by Year:</label>';
-echo '<select name="year" id="year">';
-echo '<option value="">Select Year</option>';
 
-// Loop to fetch years as options
-while ($row = $yearResult->fetch_assoc()) {
-    echo "<option value='{$row['Year']}'>{$row['Year']}</option>";
+
+echo '<label for="combinedCountry" class="filter-label">Filter by Year:</label>
+            <select id="combinedCountry" name="combinedCountry">
+                <option value="">Select Year</option>';
+foreach ($countries as $country) {
+    echo '<option value="'.htmlspecialchars($country).'">'.htmlspecialchars($country).'</option>';
 }
-
 echo '</select>
-        <input type="submit" value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+            <input type="submit" value="Filter by Year" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+        </div>
       </form>';
+
+
+
+
+
+// Dropdown for years
+// echo '<label for="combinedCountry" class="filter-label">Filter by Country:</label>
+//             <select id="combinedCountry" name="combinedCountry">
+//                 <option value="">Select Country</option>';
+// foreach ($countries as $country) {
+//     echo '<option value="'.htmlspecialchars($country).'">'.htmlspecialchars($country).'</option>';
+// }
+// echo '</select>
+//             <input type="submit" value="Filter by Year and Country" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" style="width: 200px">
+//         </div>
+//       </form>';
+
 
 
 // Specific date filter
