@@ -14,7 +14,7 @@
 			$data = mysqli_fetch_array($query);
 
 			$this->pid = $data['PlaylistID'];
-			$this->name = $data['Playlist Title'];
+			$this->name = $data['PlaylistTitle'];
 			$this->uid = $data['UserID'];
             $this->date = $data['CreatedDate'];
 		}
