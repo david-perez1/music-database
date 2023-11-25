@@ -122,7 +122,7 @@ include('playbar.php');
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2 style="display: flex; align-items: center;">Your Library
+            <h2 style="display: flex; align-items: center; font-weight: bold;">My Playlists
                 <button class="add-button" onclick="handleAddPlaylist()">+</button>
             </h2>
             <ul id="playlist">
