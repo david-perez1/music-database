@@ -95,6 +95,9 @@ if (isset($_GET['playlistID'])) {
         echo "text-align: center;";
         echo "color: #000;"; // Black color
         echo "}";
+        echo ".form-label {";
+        echo "color: #000;"; // Black color for form labels
+        echo "}";
         echo "select, input {";
         echo "width: 100%;";
         echo "padding: 10px;";
@@ -118,13 +121,13 @@ if (isset($_GET['playlistID'])) {
         $songs = mysqli_fetch_all($songsQuery, MYSQLI_ASSOC);
 
         echo "<form method='post' action='rateASong.php?playlistID=$playlistID'>";
-        echo "Select a song to rate: <select name='songID'>";
+        echo "<div class='form-label'>Select a song to rate:</div><select name='songID'>";
         foreach ($songs as $song) {
             echo "<option value='" . $song['SongID'] . "'>" . $song['SongTitle'] . "</option>";
         }
         echo "</select><br>";
 
-        echo "Enter a rating (an integer): <input type='text' name='ratingValue'><br>";
+        echo "<div class='form-label'>Enter a rating (an integer):</div> <input type='text' name='ratingValue'><br>";
         echo "<input type='submit' name='rateSong' value='Rate Song'>";
         echo "</form>";
         echo "</div>";

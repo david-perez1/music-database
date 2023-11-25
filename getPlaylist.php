@@ -6,7 +6,16 @@ include('connection.php');
 $playlistID = $_POST['playlistID'];
 $playlist = new Playlist($con, $playlistID);
 
+echo '<style>';
+echo '.playlist-header { display: flex; align-items: center; }';
+echo '.playlist-image { max-width: 300px; height: auto; margin-right: 20px; }';
+echo '.playlist-title { font-size: 40px; }';
+echo '</style>';
+
+echo '<div class="playlist-header">';
+echo '<img src="' . $playlist->getImage() . '" alt="Playlist Image" class="playlist-image">';
 echo '<h1 class="playlist-title">' . $playlist->getName() . '</h1>';
+echo '</div>';
 
 echo '<ul class="song-list">';
 echo '<li>';
@@ -47,7 +56,7 @@ if ($playlist->isEmpty()) {
         echo '<span class="song-artist">' . $song->getArtistName() . '</span>';
         echo '<span class="song-duration">' . $formattedDuration . '</span>';
         echo '<span class="song-rating-value">' . $rating . '</span>';
-        echo '</li>';
+        echo '<span class="image">' . $playlistImage . '</span>';
         echo '</a>';
         
     }

@@ -133,7 +133,7 @@ include('playbar.php');
                 $playlists = mysqli_query($con, $sql);
 
                 foreach ($playlists as $playlistData) {
-                    echo "<a href='#playlistID=" . $playlistData["PlaylistID"] ."'onclick='showPlaylist(\"" . $playlistData["PlaylistID"] . "\")'><li>" . $playlistData['PlaylistTitle'] . "</li></a>";
+                    echo "<a href='#playlistID=" . $playlistData["PlaylistID"] ."'onclick='showPlaylist(\"" . $playlistData["PlaylistID"] . "\")'><li>" . $playlistData['PlaylistTitle']. $playlistData['playlistImage'] . "</li></a>";
                 }
                 ?>
             </ul>
@@ -156,17 +156,25 @@ include('playbar.php');
                 data: { playlistID: playlistID },
                 success: function (response) {
                     $('#playlist-content').html(response);
+                    
+                    // Update the image source directly
+                    var playlistImage = $('#playlist-content img').attr('src');
+                    $('#playlist-content img').attr('src', playlistImage);
                 }
-            });
-        }
+        });
+       }
 
         function handleAddPlaylist() {
             var playlistName = prompt("Give your playlist a name:", "");
-            if (playlistName != null && playlistName != "") {
+            var image = prompt("Enter a URL for an image:", "");
+            if (playlistName != null && playlistName != "" && image != null && image != "") {
                 $.ajax({
                     type: 'POST',
                     url: 'create_playlist.php',
-                    data: { playlistName: playlistName },
+                    data: {
+                        playlistName: playlistName,
+                        image: image
+                    },
                     success: function (response) {
                         $('#playlist-content').html(response);
 

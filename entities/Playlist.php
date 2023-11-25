@@ -4,6 +4,7 @@
 		private $con;
 		private $pid;
 		private $name;
+		private $image; 
 		private $uid;
         private $date;
 
@@ -15,12 +16,16 @@
 
 			$this->pid = $data['PlaylistID'];
 			$this->name = $data['PlaylistTitle'];
+			$this->image = $data['image'];
 			$this->uid = $data['UserID'];
             $this->date = $data['CreatedDate'];
 		}
 
 		public function getName() {
 			return $this->name;
+		}
+		public function getImage() {
+			return $this->image;
 		}
 
 		public function getUID() {
