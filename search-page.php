@@ -1,6 +1,7 @@
 <?php
 include('connection.php');
 include('navloggedin.php');
+include('playbar.php')
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +56,6 @@ include('navloggedin.php');
                         echo "<div class='dropdown'>";
 
                         echo "<a href='#' class='add-to-playlist-link'><img src='images/green-plus-button.png' height='25px' width='25px' alt='Add to Playlist'></img></a>";
-                        
                         echo "<div class='dropdown-content'>";
 
                         foreach ($playlists as $playlist){

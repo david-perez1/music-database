@@ -161,6 +161,7 @@ if (isset($_SESSION['id'])) {
         <p>Artist Name: <?php echo htmlspecialchars($artist_info['ArtistName']); ?></p>
         <p>Date of Birth: <?php echo htmlspecialchars($artist_info['DateOfBirth']); ?></p>
         <p>Country: <?php echo htmlspecialchars($artist_info['Country']); ?></p>
+        <a href="DeleteAccount.php" class="delete-account-link" style="display: block; margin-top: 20px; color: #ffffff;">Delete Account</a>
 
         <!-- Account Settings -->
         <div class="account-settings">
