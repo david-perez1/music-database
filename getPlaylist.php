@@ -6,8 +6,8 @@ include('connection.php');
 $playlistID = $_POST['playlistID'];
 $playlist = new Playlist($con, $playlistID);
 
-echo '<h1 class="playlist-title">' . $playlist->getName() . '</h1>';
-
+echo '<h1 class="playlist-title" style="text-align: left; font-size: 40px;">' . $playlist->getName() . '</h1>';
+echo '<img src="' . $playlist->getImage() . '" alt="Playlist Image" style="width: 300px; height: 300px;">';
 echo '<ul class="song-list">';
 echo '<li>';
 echo '<span class="song-title">Title</span>';
@@ -47,7 +47,7 @@ if ($playlist->isEmpty()) {
         echo '<span class="song-artist">' . $song->getArtistName() . '</span>';
         echo '<span class="song-duration">' . $formattedDuration . '</span>';
         echo '<span class="song-rating-value">' . $rating . '</span>';
-        echo '</li>';
+        echo '<span class="image">' . $playlistImage . '</span>';
         echo '</a>';
         
     }
