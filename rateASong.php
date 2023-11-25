@@ -118,7 +118,7 @@ if (isset($_GET['playlistID'])) {
         $songs = mysqli_fetch_all($songsQuery, MYSQLI_ASSOC);
 
         echo "<form method='post' action='rateASong.php?playlistID=$playlistID'>";
-        echo "Select a song to rate: <select name='songID'>";
+        echo "Please select a song to rate: <select name='songID'>";
         foreach ($songs as $song) {
             echo "<option value='" . $song['SongID'] . "'>" . $song['SongTitle'] . "</option>";
         }
