@@ -1,3 +1,4 @@
+
 <?php
 // Start the session or check if the session already started
 // if (session_status() == PHP_SESSION_NONE) {
@@ -103,20 +104,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html>
+
 <head>
-    <!-- Your head content, like title, link to CSS, etc. -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            
+        }
+
+       
+
+        .container {
+            width: 40%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 200px;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        input[type="submit"] {
+            background-color:#7d1414;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
+
 <body class="background">
     <?php if (isset($error_message)): ?>
-            <div class='error-message'><?php echo $error_message;exit; ?></div>
-        
+        <div class='error-message'><?php echo $error_message; exit; ?></div>
     <?php endif; ?>
-<!-- Center the form on the page -->
-    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+    <!-- Center the form on the page -->
+    <div class="container">
         <form action="" method="post" enctype="multipart/form-data">
-            <table align="center">
+            
                 <tr>
                     <td>Select song to upload:</td>
                     <td><input type="file" name="songToUpload" id="songToUpload" accept=".mp3"></td>
@@ -140,11 +209,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
                 <tr>
                     <td colspan="2" style="text-align: center;"><input type="submit" value="Upload Song" name="submit"></td>
                 </tr>
-            </table>
+            
         </form>
     </div>
 
-<!-- Rest of your body content -->
+    <!-- Rest of your body content -->
 
 </body>
+
 </html>
+
