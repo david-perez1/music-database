@@ -34,7 +34,7 @@ if (isset($_GET['playlistID'])) {
                     $stmt = $con->prepare("UPDATE rating_system SET RatingValue = ?, RatingDate = ? WHERE SongID = ? AND UserID = ?");
                     $currentDate = date('Y-m-d'); // This will format the date as YYYY-MM-DD
                     $stmt->bind_param("isii", $ratingValue, $currentDate, $songID, $userID);
-                    
+
                 } else {
                     // No rating exists, insert a new rating
                     // Note: RatingID is auto-generated, no need to bind it
@@ -43,7 +43,7 @@ if (isset($_GET['playlistID'])) {
                     $stmt->bind_param("iiis", $userID, $ratingValue, $songID, $currentDate);
 
                 }
-                
+
                 // Execute the update or insert
                 $success = $stmt->execute();
                 $stmt->close();
@@ -68,6 +68,49 @@ if (isset($_GET['playlistID'])) {
         }
     } else {
         // Display the form to rate a song
+        echo "<html>";
+        echo "<head>";
+        echo "<title>Rate A Song</title>";
+        echo "<style>";
+        echo "body {";
+        echo "background-color: #333;";
+        echo "color: #fff;";
+        echo "font-family: Arial, sans-serif;";
+        echo "margin: 0;";
+        echo "display: flex;";
+        echo "align-items: center;";
+        echo "justify-content: center;";
+        echo "height: 100vh;";
+        echo "}";
+        echo ".container {";
+        echo "width: 50%;";
+        echo "background-color: #fff;"; // White background
+        echo "padding: 20px;"; // Added padding
+        echo "box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"; // Added box shadow
+        echo "}";
+        echo "form {";
+        echo "width: 100%;";
+        echo "}";
+        echo "h2 {";
+        echo "text-align: center;";
+        echo "color: #000;"; // Black color
+        echo "}";
+        echo "select, input {";
+        echo "width: 100%;";
+        echo "padding: 10px;";
+        echo "margin-bottom: 10px;";
+        echo "}";
+        echo "input[type='submit'] {";
+        echo "background-color: #ff0000;"; // Red color
+        echo "color: #fff;";
+        echo "padding: 15px;"; // Increased padding for a bigger button
+        echo "font-size: 16px;"; // Increased font size
+        echo "cursor: pointer;";
+        echo "}";
+        echo "</style>";
+        echo "</head>";
+        echo "<body>";
+        echo "<div class='container'>";
         echo "<h2>Rate A Song</h2>";
 
         // Fetch the songs from the playlist for the user to choose
@@ -84,6 +127,9 @@ if (isset($_GET['playlistID'])) {
         echo "Enter a rating (an integer): <input type='text' name='ratingValue'><br>";
         echo "<input type='submit' name='rateSong' value='Rate Song'>";
         echo "</form>";
+        echo "</div>";
+        echo "</body>";
+        echo "</html>";
     }
 } else {
     // PlaylistID not set
