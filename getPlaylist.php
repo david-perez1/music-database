@@ -6,8 +6,17 @@ include('connection.php');
 $playlistID = $_POST['playlistID'];
 $playlist = new Playlist($con, $playlistID);
 
-echo '<h1 class="playlist-title" style="text-align: left; font-size: 40px;">' . $playlist->getName() . '</h1>';
-echo '<img src="' . $playlist->getImage() . '" alt="Playlist Image" style="width: 300px; height: 300px;">';
+echo '<style>';
+echo '.playlist-header { display: flex; align-items: center; }';
+echo '.playlist-image { max-width: 300px; height: auto; margin-right: 20px; }';
+echo '.playlist-title { font-size: 40px; }';
+echo '</style>';
+
+echo '<div class="playlist-header">';
+echo '<img src="' . $playlist->getImage() . '" alt="Playlist Image" class="playlist-image">';
+echo '<h1 class="playlist-title">' . $playlist->getName() . '</h1>';
+echo '</div>';
+
 echo '<ul class="song-list">';
 echo '<li>';
 echo '<span class="song-title">Title</span>';
