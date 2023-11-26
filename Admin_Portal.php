@@ -46,7 +46,7 @@ function setNavbarOpen($value)
         <div class="flex justify-between">
 
             <div class="flex space-x-4">
-            <!-- logo -->
+            
             <div>
                 <a href="Admin_portal.php" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
                 <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -58,7 +58,7 @@ function setNavbarOpen($value)
                 </a>
             </div>
 
-            <!-- primary nav -->
+           
             <div class="hidden md:flex items-center space-x-1">
                 <a href="genreReport.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Genres</a>
 <!--                 <a href="viewedReport.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Top 10 Viewed Songs</a> -->
@@ -72,13 +72,13 @@ function setNavbarOpen($value)
             </div>
             </div>
 
-            <!-- secondary nav -->
+           
             <div class="hidden md:flex items-center space-x-1">
             <a href="Logout_Member.php"
                 class="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">Sign out</a>
             </div>
 
-            <!-- mobile button goes here -->
+           
             <div class="md:hidden flex items-center">
             <button class="mobile-menu-button">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -91,7 +91,7 @@ function setNavbarOpen($value)
         </div>
         </div>
 
-        <!-- mobile menu -->
+        
         <div class="mobile-menu hidden md:hidden">
         <a href="search-page.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Search</a>
         <a href="create_playlist.php" class="block py-2 px-4 text-sm hover:bg-gray-200">Create Playlist</a>
@@ -100,11 +100,11 @@ function setNavbarOpen($value)
     </nav>
 
     <script>
-        // grab everything we need
+        
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");
 
-        // add event listeners
+       
         btn.addEventListener("click", () => {
         menu.classList.toggle("hidden");
         });
