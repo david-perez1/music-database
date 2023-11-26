@@ -21,7 +21,7 @@
       width: 100%;
       z-index: 9999;
       max-height: 80px;
-      min-height: 80px; /* Set a minimum height to prevent the bar from collapsing */
+      min-height: 80px; 
     }
 
     .center-buttons {
@@ -31,13 +31,13 @@
     }
 
     .center-buttons img {
-      width: 40px; /* adjust as needed */
-      height: 40px; /* adjust as needed */
+      width: 40px; 
+      height: 40px; 
     }
 
     .currently-playing {
-      float: left; /* Set the div to the left side */
-      margin-right: 20px; /* Adjust margin as needed for spacing */
+      float: left; 
+      margin-right: 20px; 
       margin-top: -10px;
       text-align: left;
     }
@@ -53,8 +53,6 @@
   </style>
 </head>
 <body>
-
-<!-- Your page content goes here -->
 
 <div class="bottom-bar">
   <div class="currently-playing" id="currentlyPlayingElement"></div>
