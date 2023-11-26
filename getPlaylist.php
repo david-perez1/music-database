@@ -63,7 +63,7 @@ if ($playlist->isEmpty()) {
         }
 
         echo '<script src="queue.js"></script>';
-        echo '<tr>';
+        echo '<tr ondblclick="updateSession(' . $song->getSongID() . ')">';
         echo '<td>' . $song->getTitle() . '</td>';
         echo '<td>' . $song->getArtistName() . '</td>';
         echo '<td>' . $formattedDuration . '</td>';
