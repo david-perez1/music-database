@@ -25,6 +25,10 @@ echo '<span class="song-duration">Duration</span>';
 echo '<span class="song-rating-value">Rating Value</span>';
 echo '</li>';
 
+echo '<style>';
+echo '.song-title, .song-artist, .song-duration, .song-rating-value { margin-right: 400px; }';
+echo '</style>';
+
 echo '<ul>';
 if ($playlist->isEmpty()) {
     echo '<div class="items-center justify-center md:pl-64 md:pr-64 mx-auto md:mt-10"><p style="color: gray;">This playlist is empty.</p></div>';
@@ -55,7 +59,7 @@ if ($playlist->isEmpty()) {
         echo '<span class="song-title">' . $song->getTitle() . '</span>';
         echo '<span class="song-artist">' . $song->getArtistName() . '</span>';
         echo '<span class="song-duration">' . $formattedDuration . '</span>';
-        echo '<span class="song-rating-value">' . $rating . '</span>';
+        echo '<span class="song-rating-value" ">' . $rating . '</span>';
         echo '<span class="image">' . $playlistImage . '</span>';
         echo '</a>';
         
