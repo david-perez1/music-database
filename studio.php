@@ -1,4 +1,3 @@
-
 <?php
 // Start the session or check if the session already started
 // if (session_status() == PHP_SESSION_NONE) {
@@ -218,4 +217,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["songToUpload"])) {
 </body>
 
 </html>
-
