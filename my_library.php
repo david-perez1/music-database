@@ -130,6 +130,35 @@ include('playbar.php');
         .add-button:hover {
             background-color: #45a049;
         }
+
+        #notifications {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000; /* Make sure it appears above other content */
+        background: red; /* Red background for high visibility */
+        color: white; /* White text for contrast */
+        text-align: center; /* Center the text */
+        }
+
+        .notification {
+            padding: 10px;
+            border-bottom: 1px solid white; /* Optional: for styling */
+            position: relative;
+            padding: 10px 35px 10px 10px; /* Add space for close button */
+        }
+        .close-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
