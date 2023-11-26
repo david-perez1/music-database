@@ -1,28 +1,16 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Include database connection
+
     include('connection.php');
 
-    // Collect and sanitize input data
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']); // Consider hashing this password
+    $password = mysqli_real_escape_string($conn, $_POST['password']); 
     $artistName = mysqli_real_escape_string($conn, $_POST['artistName']);
     $bio = mysqli_real_escape_string($conn, $_POST['bio']);
     $genre = mysqli_real_escape_string($conn, $_POST['genre']);
 
-    // SQL to insert user into 'users' table
-    // $user_query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
-    // mysqli_query($conn, $user_query);
-
-    // Assuming you get the user_id as last inserted ID
-    // $user_id = mysqli_insert_id($conn);
-
-    // SQL to insert artist into 'artist' table
-    // $artist_query = "INSERT INTO artist (name, bio, genre, user_id) VALUES ('$artistName', '$bio', '$genre', '$user_id')";
-    // mysqli_query($conn, $artist_query);
-
-    // Check for errors and give appropriate message
+    
 }
 ?>
 
@@ -31,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Artist Registration</title>
     <link href="allWebApp.css" rel="stylesheet">
-    <!-- Add any additional styles if needed -->
+ 
 </head>
 <body>
 <section class="background-radial-gradient md:overflow-hidden">
@@ -44,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         padding: 0;
         background-image: url('cougarloginpage.jpeg');
         background-position: center 20%; 
-        background-size: 1000px 1000px; /* Ensures the image covers the entire viewport */ 
+        background-size: 1000px 1000px;  
         background-repeat: no-repeat; 
         }
 
@@ -61,12 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <h1 class="my-6 text-3xl font-bold text-center">Artist Registration</h1>
 
                             <button class="mb-6 bg-blue-600 inline-block w-full rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">Register</button>
-                            <!-- User registration fields -->
+                            
                             <input type="text" name="username" placeholder="Username" required class="block w-full p-4 text-lg rounded-sm">
                             <input type="email" name="email" placeholder="Email" required class="block w-full p-4 text-lg rounded-sm">
                             <input type="password" name="password" placeholder="Password" required class="block w-full p-4 text-lg rounded-sm">
 
-                            <!-- Artist specific fields -->
+                            
                             <input type="text" name="artistName" placeholder="Artist Name" required class="block w-full p-4 text-lg rounded-sm">
                             <textarea name="bio" placeholder="Bio" class="block w-full p-4 text-lg rounded-sm"></textarea>
                             <input type="text" name="Country" placeholder="Country" required class="block w-full p-4 text-lg rounded-sm">
