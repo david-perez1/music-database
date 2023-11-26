@@ -4,7 +4,7 @@ include('connection.php');
 session_start();
 
 $playlistName = $_POST['playlistName'];
-$playlistImage = $_POST['image'];  // Update variable name
+$playlistImage = $_POST['image'];  
 $todayDate = date("Y-m-d");
 $userID = $_SESSION['id'];
 
