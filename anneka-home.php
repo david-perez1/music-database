@@ -42,11 +42,11 @@ include('navloggedin.php');
             <button class="upload-song-button" onclick="openFileUploader()">Upload Song</button>
         </div>
         <div class="playlist-section" id="playlistSection">
-            <!-- Display the names of all playlists here -->
+            
         </div>
     </div>
 
-    <!-- Add any other content or sections here -->
+    
 
     <script>
         function createPlaylist() {
