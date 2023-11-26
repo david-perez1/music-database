@@ -87,14 +87,28 @@ include('playbar.php');
         .song-title,
         .song-artist,
         .song-duration,
-        .song-rating-value {
-            flex-grow: 1;
-            text-align: center;
+        .song-rating-value 
+
+        .song-title {
+            right: 2000;
         }
 
-        .rating-value {
-            flex-grow: 0.5; /* Adjust as needed */
+        .song-artist {
+            position: absolute;
+            right: 800;
         }
+
+        .song-duration {
+            position: absolute;
+            right: 500;
+        }
+
+        .song-rating-value {
+            position: absolute;
+            left: 1100;
+        }
+
+
 
         .add-button {
             position: absolute;
