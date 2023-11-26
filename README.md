@@ -22,6 +22,7 @@ Password: 12345
 
 Some Notes regarding the Online Music Library:
 - Please make sure to double-click on the song title in order to get the music to play
+- Please lower the volume of your computer before playing music, since the music volume can be really loud
 - Instructions to show how the trigger works: Login to the artist account, go to the profile, and press delete account. Now login to the Listener’s account and then go to your playlists. You’ll see that some of the songs got deleted from the playlist. This happened because the artists deleted their songs and the user shouldn’t be able to access them anymore.
 
 Further Details Regarding the Web Application are mentioned in the Project Documentation
