@@ -2,16 +2,14 @@
 include('connection.php');
 include('navloggedin.php');
 
-// Function to sanitize input
 function clean_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-// Check for biography update submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_biography'])) {
     $newBiography = clean_input($_POST['new_biography']);
 
-    // Replace with a prepared statement in a real application
+    
     $updateBiographyQuery = "UPDATE artist SET Biography = ? WHERE UserID = ?";
     $stmt = mysqli_prepare($con, $updateBiographyQuery);
     $userId = $_SESSION['id'];
@@ -26,11 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_biography'])) {
     mysqli_stmt_close($stmt);
 }
 
-// Fetch artist biography
+
 if (isset($_SESSION['id'])) {
     $user_id = $_SESSION['id'];
 
-    // Check if the user is an artist
+    
     $artist_query = "SELECT ArtistName, DateOfBirth, Country, Biography FROM artist WHERE UserID = ?";
     $stmt = mysqli_prepare($con, $artist_query);
     mysqli_stmt_bind_param($stmt, 'i', $user_id);
@@ -39,7 +37,7 @@ if (isset($_SESSION['id'])) {
     $is_artist = mysqli_num_rows($artist_result) > 0;
     $artist_info = $is_artist ? mysqli_fetch_assoc($artist_result) : null;
 
-    // Fetch user data
+    
     $user_query = "SELECT email, username FROM users WHERE member_ID = ?";
     $stmt = mysqli_prepare($con, $user_query);
     mysqli_stmt_bind_param($stmt, 'i', $user_id);
@@ -95,7 +93,7 @@ if (isset($_SESSION['id'])) {
 
         input[type="text"],
         textarea {
-        color: #000000; /* Set the font color to black */
+        color: #000000; 
         background-color: #ecf0f1;
         border: 1px solid #bdc3c7;
         padding: 10px;
@@ -174,7 +172,7 @@ if (isset($_SESSION['id'])) {
         <div class="user-name"><?php echo isset($user_info) ? htmlspecialchars($user_info['username']) : 'Guest'; ?></div>
 
         <?php if ($is_artist && $artist_info): ?>
-    <!-- Artist Details -->
+   
     <h2 style="color: #ffffff;">Artist Details</h2>
     <table>
         <tr>
@@ -198,7 +196,7 @@ if (isset($_SESSION['id'])) {
 
     <hr style="margin-top: 20px; margin-bottom: 20px; border-color: #ffffff;">
 
-        <!-- Update Biography Form -->
+        
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="new_biography">Account Settings</label>
             <textarea id="new_biography" name="new_biography" rows="4" cols="50"></textarea><br>
@@ -217,7 +215,6 @@ if (isset($_SESSION['id'])) {
 <?php else: ?>
 
 
-            <!-- Regular User Details -->
             <div class="user-details">
                 <table>
                     <tr>
@@ -230,7 +227,7 @@ if (isset($_SESSION['id'])) {
                     </tr>
                 </table>
 
-                  <!-- Delete Account Link -->
+                  
         <a href="DeleteAccount.php" class="delete-account-link" style="display: block; margin-top: 20px; color: #ffffff;">Delete Account</a>
     </div>
 <?php endif; ?>
@@ -238,7 +235,7 @@ if (isset($_SESSION['id'])) {
 >
 
 <?php else: ?>
-    <!-- Display login form -->
+    
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br>
