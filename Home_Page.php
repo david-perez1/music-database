@@ -1,5 +1,16 @@
-<?php include('navloggedin.php');
-/* include('connection.php'); */ 
+<?php
+include('navloggedin.php');
+include('connection.php'); 
+include('entities/Song.php');
+
+$uid = $_SESSION['id'];
+
+$sql = "SELECT * FROM notification WHERE UserID = $uid";
+$notificationResult = mysqli_query($con, $sql);
+
+if ($notificationResult) {
+    $notifications = mysqli_fetch_all($notificationResult, MYSQLI_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +81,32 @@
         <div style="background-image: url('imageUploads/djshaq.png');"></div>
       </a>
     </div>
+    <?php
+    // Display notifications
+    if (!empty($notifications)) {
+      echo '<ul>';
+      $combinedNotifications = '';
+
+      foreach ($notifications as $notification) {
+        $artistID = htmlspecialchars($notification['ArtistID']);
+        $songID = htmlspecialchars($notification['SongID']);
+        $userID = htmlspecialchars($notification['UserID']);
+  
+        // Concatenate HTML content for each notification
+  
+        $song = new Song($con, $songID);
+        $combinedNotifications .= '<p class="notification-title">New Song Notification</p>';
+        $combinedNotifications .= '<p>We have a new song from Artist ' . $song->getArtistName() . '!</p>';
+        $combinedNotifications .= '<p>Song: ' . $song->getTitle() . '</p>';
+      }
+
+// Echo the combined HTML content within a single container
+echo '<div class="notification-box">' . $combinedNotifications . '</div>';
+      echo '</ul>';
+    } else {
+      echo '<p>No notifications</p>';
+    }
+    ?>
   </div>
 </body>
 
