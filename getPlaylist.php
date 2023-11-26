@@ -8,30 +8,38 @@ $playlist = new Playlist($con, $playlistID);
 
 echo '<style>';
 echo '.playlist-header { display: flex; align-items: center; }';
-echo '.playlist-image { max-width: 300px; height: auto; margin-right: 20px; }';
+echo '.playlist-image { max-width: 300px; max-height: 300px; margin-right: 20px; }';
 echo '.playlist-title { font-size: 40px; }';
+echo '.song-table { width: 100%; margin: 50px 0; background-color: black; color: white; }';
+echo '.song-table th, .song-table td { border: 1px solid #ddd; padding: 15px; text-align: left; }'; 
+echo '.song-table th { background-color: #333; }';
+echo '.song-table td { background-color: #222; }';
+echo '.song-table tr:nth-child(even) { background-color: #111; }';
+echo '.song-table th:nth-child(1), .song-table td:nth-child(1) { width: 50%; }'; // Adjusted width for the first column
+echo '.song-table th:nth-child(2), .song-table td:nth-child(2) { width: 40%; }'; // Adjusted width for the second column
+echo '.song-table th:nth-child(3), .song-table td:nth-child(3) { width: 30%; }'; // Adjusted width for the third column
+echo '.song-table th:nth-child(4), .song-table td:nth-child(4) { width: 20%; }'; // Adjusted width for the fourth column
 echo '</style>';
+
 
 echo '<div class="playlist-header">';
 echo '<img src="' . $playlist->getImage() . '" alt="Playlist Image" class="playlist-image">';
 echo '<h1 class="playlist-title">' . $playlist->getName() . '</h1>';
 echo '</div>';
 
-echo '<ul class="song-list">';
-echo '<li>';
-echo '<span class="song-title">Title</span>';
-echo '<span class="song-artist">Artist</span>';
-echo '<span class="song-duration">Duration</span>';
-echo '<span class="song-rating-value">Rating Value</span>';
-echo '</li>';
+echo '<table class="song-table">';
+echo '<thead>';
+echo '<tr>';
+echo '<th>Title</th>';
+echo '<th>Artist</th>';
+echo '<th>Duration</th>';
+echo '<th>Rating Value</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
 
-echo '<style>';
-echo '.song-title, .song-artist, .song-duration, .song-rating-value { margin-right: 400px; }';
-echo '</style>';
-
-echo '<ul>';
 if ($playlist->isEmpty()) {
-    echo '<div class="items-center justify-center md:pl-64 md:pr-64 mx-auto md:mt-10"><p style="color: gray;">This playlist is empty.</p></div>';
+    echo '<tr><td colspan="4" style="text-align: center;">This playlist is empty.</td></tr>';
 } else {
     foreach ($playlist->getSongIds() as $sid) {
         $song = new Song($con, $sid);
@@ -53,35 +61,39 @@ if ($playlist->isEmpty()) {
             error_log("MySQL error: " . mysqli_error($con));
             $rating = null;
         }
+
         echo '<script src="queue.js"></script>';
-        echo '<a ondblclick="updateSession(' . $song->getSongID() . ')">';
-        echo '<li>';
-        echo '<span class="song-title">' . $song->getTitle() . '</span>';
-        echo '<span class="song-artist">' . $song->getArtistName() . '</span>';
-        echo '<span class="song-duration">' . $formattedDuration . '</span>';
-        echo '<span class="song-rating-value" ">' . $rating . '</span>';
-        echo '<span class="image">' . $playlistImage . '</span>';
-        echo '</a>';
-        
+        echo '<tr>';
+        echo '<td>' . $song->getTitle() . '</td>';
+        echo '<td>' . $song->getArtistName() . '</td>';
+        echo '<td>' . $formattedDuration . '</td>';
+        echo '<td>' . $rating . '</td>';
+        echo '</tr>';
     }
 
     // Add Rate A Song button
-    echo "<li>";
+    echo "<tr>";
+    echo "<td colspan='4' style='text-align: center;'>";
     echo "<form method='get' action='rateASong.php'>";
     echo "<input type='hidden' name='playlistID' value='$playlistID'>";
     echo "<input type='submit' name='rateASong' value='Rate A Song'>";
     echo "</form>";
-    echo "</li>";
+    echo "</td>";
+    echo "</tr>";
 
     // Add Delete Playlist button
-    echo "<li>";
+    echo "<tr>";
+    echo "<td colspan='4' style='text-align: center;'>";
     echo "<form method='post' action='deletePlaylist.php'>";
     echo "<input type='hidden' name='playlistID' value='$playlistID'>";
     echo "<input type='submit' name='deletePlaylist' value='Delete Playlist'>";
     echo "</form>";
-    echo "</li>";
+    echo "</td>";
+    echo "</tr>";
 }
-echo '</ul>';
+
+echo '</tbody>';
+echo '</table>';
 
 function formatDuration($durationInSeconds)
 {
