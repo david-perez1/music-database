@@ -56,8 +56,8 @@ if (isset($_SESSION['id'])) {
     <title><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></title>
     <style>
         body {
-            background-color: #333; /* Light background color */
-            color:#232323; /* Dark text color */ 
+            background-color: #333;
+            color: #232323;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
@@ -70,7 +70,7 @@ if (isset($_SESSION['id'])) {
         }
 
         .header {
-            background-color: #3498db; /* Header background color */
+            background-color: #ff0000; 
             color: white;
             text-align: center;
             padding: 15px;
@@ -80,32 +80,33 @@ if (isset($_SESSION['id'])) {
         .user-name {
             font-size: 36px;
             font-weight: bold;
-            color: #333;
+            color: #ffffff;
             margin-bottom: 10px;
             text-align: center;
         }
 
         p, h2, label {
-            color: #555; /* Slightly darker text color */
+            color: #555;
         }
 
         textarea {
-            color: #333;
+            color: #ffffff;
         }
 
         input[type="text"],
         textarea {
-            background-color: #ecf0f1; /* Lighter background for input fields */
-            color: #333;
-            border: 1px solid #bdc3c7; /* Lighter border color */
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 100%;
-            box-sizing: border-box;
+        color: #000000; /* Set the font color to black */
+        background-color: #ecf0f1;
+        border: 1px solid #bdc3c7;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
         }
 
+
         input[type="submit"] {
-            background-color: #2ecc71; /* Submit button color */
+            background-color: #2ecc71;
             color: white;
             padding: 12px;
             border: none;
@@ -115,95 +116,121 @@ if (isset($_SESSION['id'])) {
         }
 
         input[type="submit"]:hover {
-            background-color: #27ae60; /* Hover color for submit button */
+            background-color: #27ae60;
         }
 
         .account-settings {
             margin-top: 20px;
-            border-top: 1px solid #bdc3c7; /* Lighter border color */
+            border-top: 1px solid #bdc3c7;
             padding-top: 20px;
+            text-align: center; 
+            color: #ffffff !important;
+            font-size: 25px;
+        }
+
+        .delete-account-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center; 
+            color: #ffffff;
+        }
+
+        .user-details {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .artist-details {
+         color: #ffffff;
+        }
+
+        label {
+        font-weight: bold;
+        color: #ffffff; 
+        display: block; 
+        text-align: center; 
+        margin-bottom: 10px; 
+        }
+
+
+        .biography-section {
+        color: #ffffff;
+        }
+
+        table {
+            margin: 0 auto;
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-<div class="header" style="background-color: #ff0000; /* Red color */">
-    <h1 style="font-size: 36px; font-weight: bold; color: #ffffff;"><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></h1>
-</div>
-
-
-    <div class="account-settings" style="color: #ffffff;">
-    <h2 style="font-size: 24px; color: #ffffff;">Account Settings</h2>
-    <p style="font-size: 24px; color: #ffffff;">Update your account preferences below:</p>
-    <!-- Add any additional settings for regular users here -->
-</div>
-
-
-
-        <!-- Additional account settings can be added here -->
+    <div class="header">
+        <h1 class="user-name"><?php echo $is_artist ? 'Artist Profile' : 'User Profile'; ?></h1>
     </div>
-</div>
 
-</body>
-</html>
+    <?php if (isset($_SESSION['id']) && $user_info): ?>
+        <div class="user-name"><?php echo isset($user_info) ? htmlspecialchars($user_info['username']) : 'Guest'; ?></div>
+
+        <?php if ($is_artist && $artist_info): ?>
+    <!-- Artist Details -->
+    <h2 style="color: #ffffff;">Artist Details</h2>
+    <table>
+        <tr>
+            <td><strong>Artist Name:</strong></td>
+            <td><?php echo htmlspecialchars($artist_info['ArtistName']); ?></td>
+        </tr>
+        <tr>
+            <td><strong>Date of Birth:</strong></td>
+            <td><?php echo htmlspecialchars($artist_info['DateOfBirth']); ?></td>
+        </tr>
+        <tr>
+            <td><strong>Country:</strong></td>
+            <td><?php echo htmlspecialchars($artist_info['Country']); ?></td>
+        </tr>
+        <tr>
+            <td><strong>Biography:</strong></td>
+            <td><?php echo htmlspecialchars($artist_info['Biography']); ?></td>
+        </tr>
+    </table>
+    <a href="DeleteAccount.php" class="delete-account-link">Delete Account</a>
+
+    <hr style="margin-top: 20px; margin-bottom: 20px; border-color: #ffffff;">
+
+        <!-- Update Biography Form -->
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <label for="new_biography">Account Settings</label>
+            <textarea id="new_biography" name="new_biography" rows="4" cols="50"></textarea><br>
+            <input type="submit" name="update_biography" value="Update Biography">
+        </form>
+
+        <?php if (isset($biographyUpdateSuccess)): ?>
+            <p><?php echo $biographyUpdateSuccess; ?></p>
+        <?php endif; ?>
+
+        <?php if (isset($biographyUpdateError)): ?>
+            <p><?php echo $biographyUpdateError; ?></p>
+        <?php endif; ?>
+    </div>
+
+<?php else: ?>
 
 
-<?php if (isset($_SESSION['id']) && $user_info): ?>
-    
-    <?php echo isset($user_info) ? '<div style="text-align: center;"><span class="user-name" style="font-size: 80px; font-weight: bold; color: #ffffff;">' . htmlspecialchars($user_info['username']) . '</span></div>' : '<div style="text-align: center; color: #ffffff;">Guest</div>'; ?>
+            <!-- Regular User Details -->
+            <div class="user-details">
+                <table>
+                    <tr>
+                        <th>Email:</th>
+                        <td><?php echo htmlspecialchars($user_info['email']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Account Type:</th>
+                        <td>Regular User</td>
+                    </tr>
+                </table>
 
-
-   
-
-    <?php if ($is_artist && $artist_info): ?>
-        <h2>Artist Details</h2>
-        <p>Artist Name: <?php echo htmlspecialchars($artist_info['ArtistName']); ?></p>
-        <p>Date of Birth: <?php echo htmlspecialchars($artist_info['DateOfBirth']); ?></p>
-        <p>Country: <?php echo htmlspecialchars($artist_info['Country']); ?></p>
-        <a href="DeleteAccount.php" class="delete-account-link" style="display: block; margin-top: 20px; color: #ffffff;">Delete Account</a>
-
-        <!-- Account Settings -->
-        <div class="account-settings">
-            <h2>Account Settings</h2>
-
-            <!-- Update Biography Form -->
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <label for="new_biography">Update Biography:</label><br>
-                <textarea id="new_biography" name="new_biography" rows="4" cols="50"></textarea><br>
-                <input type="submit" name="update_biography" value="Update Biography">
-            </form>
-
-            <?php if (isset($biographyUpdateSuccess)): ?>
-                <p><?php echo $biographyUpdateSuccess; ?></p>
-            <?php endif; ?>
-
-            <?php if (isset($biographyUpdateError)): ?>
-                <p><?php echo $biographyUpdateError; ?></p>
-            <?php endif; ?>
-        </div>
-
-        <!-- Biography Section (only for artists) -->
-        <h2>Biography</h2>
-        <p><?php echo htmlspecialchars($artist_info['Biography']); ?></p>
-
-        <?php else: ?>
-
-            <div class="user-details" style="text-align: center;">
-        <table style="margin: 0 auto; text-align: left;">
-            <tr>
-                <th>Email:</th>
-                <td><?php echo htmlspecialchars($user_info['email']); ?></td>
-            </tr>
-            <tr>
-                <th>Account Type:</th>
-                <td>Regular User</td>
-            </tr>
-        </table>
-
-        
-
-        <!-- Delete Account Link -->
+                  <!-- Delete Account Link -->
         <a href="DeleteAccount.php" class="delete-account-link" style="display: block; margin-top: 20px; color: #ffffff;">Delete Account</a>
     </div>
 <?php endif; ?>
