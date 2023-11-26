@@ -3,11 +3,14 @@ include('navloggedin.php');
 include('connection.php'); 
 include('entities/Song.php');
 
+// Assuming you have a session variable for the user ID
 $uid = $_SESSION['id'];
 
+// Fetch notifications for the logged-in user
 $sql = "SELECT * FROM notification WHERE UserID = $uid";
 $notificationResult = mysqli_query($con, $sql);
 
+// Check if notifications were fetched successfully
 if ($notificationResult) {
     $notifications = mysqli_fetch_all($notificationResult, MYSQLI_ASSOC);
 }
@@ -82,30 +85,30 @@ if ($notificationResult) {
       </a>
     </div>
     <?php
-    // Display notifications
-    if (!empty($notifications)) {
-      echo '<ul>';
-      $combinedNotifications = '';
+   // Display notifications
+if (!empty($notifications)) {
+  echo '<ul>';
+  $combinedNotifications = '';
 
-      foreach ($notifications as $notification) {
-        $artistID = htmlspecialchars($notification['ArtistID']);
-        $songID = htmlspecialchars($notification['SongID']);
-        $userID = htmlspecialchars($notification['UserID']);
-  
-        // Concatenate HTML content for each notification
-  
-        $song = new Song($con, $songID);
-        $combinedNotifications .= '<p class="notification-title">New Song Notification</p>';
-        $combinedNotifications .= '<p>We have a new song from Artist ' . $song->getArtistName() . '!</p>';
-        $combinedNotifications .= '<p>Song: ' . $song->getTitle() . '</p>';
-      }
+  foreach ($notifications as $notification) {
+      $artistID = htmlspecialchars($notification['ArtistID']);
+      $songID = htmlspecialchars($notification['SongID']);
+      $userID = htmlspecialchars($notification['UserID']);
 
-// Echo the combined HTML content within a single container
-echo '<div class="notification-box">' . $combinedNotifications . '</div>';
-      echo '</ul>';
-    } else {
-      echo '<p>No notifications</p>';
-    }
+      $song = new Song($con, $songID);
+      $combinedNotifications .= '<div class="notification-container">';
+      $combinedNotifications .= '<p class="notification-title">&#x1F514; New Song Notification!</p>';
+      $combinedNotifications .= '<p>We have a new song from Artist: <strong>' . $song->getArtistName() . '</strong>.</p>';
+      $combinedNotifications .= '<p>Song: <strong>' . $song->getTitle() . '</strong></p>';
+      $combinedNotifications .= '</div>';
+  }
+
+  echo '<div class="notification-box">' . $combinedNotifications . '</div>';
+  echo '</ul>';
+} else {
+  echo '<p>No notifications</p>';
+}
+
     ?>
   </div>
 </body>
