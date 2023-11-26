@@ -1468,3 +1468,16 @@ th {
     border-radius: 5px; /* Optional: Rounds the corners of the div */
     font-weight: bold; /* Makes the text bold */
 }
+.notification-box {
+  border: 2px solid #3498db;
+  background-color: #ecf0f1;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.notification-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3498db;
+}
